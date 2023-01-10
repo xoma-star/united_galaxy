@@ -1,0 +1,33 @@
+{
+  "name": "server-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0",
+    "unique-names-generator": "^4.7.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.3.1",
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.9",
+    "@types/node-telegram-bot-api": "^0.57.6",
+    "@types/uuid": "^9.0.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  }
+}
