@@ -12,7 +12,7 @@ bot.setMyCommands([{command: '/start', description: 'Приветственно�
 addListeners(bot)
 
 bot.on('message', (msg) => {
-    console.log(systemGenerator())
+    console.log(systemGenerator('seedt'))
     if(msg.text === 'Биржа'){
         bot.sendMessage(msg.from?.id || -1, 'Единая Галактическая Биржа', {
             reply_markup: {

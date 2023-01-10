@@ -35,5 +35,10 @@ const LandscapeConstant: LandscapeSchema = {
         difficultyMultiplier: 1,
         name: 'рифовый',
         description: 'возможны участки суши'
+    },
+    GAS: {
+        difficultyMultiplier: 1,
+        name: 'газовый',
+        description: 'газовая планета'
     }
 }
