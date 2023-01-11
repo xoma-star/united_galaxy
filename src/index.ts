@@ -2,15 +2,19 @@ import TelegramBot from "node-telegram-bot-api";
 import KEYBOARDS from "./keyboards";
 import addListeners from "./listeners";
 import systemGenerator from "./generators/system.generator";
+import startExpress from "./api";
 
 const token = '5828331861:AAHs0VGlM4BJhJbWF9lVQxEeL8j187m_QcQ'
 
 const bot = new TelegramBot(token, {polling: true})
 
-bot.setMyCommands([{command: '/start', description: 'Приветственное сообщение'}])
+bot.setMyCommands([
+    {command: '/start', description: 'Приветственное сообщение'},
+    {command: '/travel', description: 'Перелет в другую систему'}
+])
 
 addListeners(bot)
-
+startExpress()
 bot.on('message', (msg) => {
     console.log(systemGenerator('seedt'))
     if(msg.text === 'Биржа'){

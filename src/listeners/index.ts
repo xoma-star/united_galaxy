@@ -1,6 +1,10 @@
 import TelegramBot from "node-telegram-bot-api";
-import StartMessageListener from "./startMessage.listener";
+import onMessageListener from "./onMessage.listener";
+import onCallbackListener from "./onCallback.listener";
+import onCommandListener from "./onCommand.listener";
 
 export default function addListeners(bot: TelegramBot){
-    StartMessageListener(bot)
+    onMessageListener(bot)
+    onCallbackListener(bot)
+    onCommandListener(bot)
 }
