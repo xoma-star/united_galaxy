@@ -4,6 +4,7 @@ import weighted_random from "../misc/weighted_random";
 import systemEnum from "../enums/system.enum";
 import SystemGeneratorConstant from "../constants/systemGenerator.constant";
 import cors from 'cors'
+import systemGenerator from "../generators/system.generator";
 
 const startExpress = () => {
     const app = express()
@@ -21,14 +22,7 @@ const startExpress = () => {
                 const x = `${coordinates[0]}${j.toString(16)}`
                 const y = `${coordinates[1]}${i.toString(16)}`
                 if(checkCoordinatesValid(x, y)){
-                    a.push(weighted_random<systemEnum>(
-                        (Object.keys(SystemGeneratorConstant) as (keyof typeof SystemGeneratorConstant)[])
-                            .reduce((a, v) => ({
-                                ...a,
-                                [v]: SystemGeneratorConstant[v].chance
-                            }), {}),
-                        `${x}:${y}`
-                    ))
+                    a.push(systemGenerator(`${x}:${y}`).type)
                 }
                 else{
                     a.push('HIDE')
