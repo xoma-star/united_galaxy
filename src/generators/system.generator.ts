@@ -11,6 +11,7 @@ import {sha512} from "js-sha512";
 import seedrandom from "seedrandom";
 
 const systemGenerator = (seed: string): SystemSchema => {
+    seed = seed.toUpperCase()
     const id = uuidv5(seed, '30a76b50-a922-4bf8-848d-54a0ab3f2a05')
     const random = seedrandom(seed)
     const systemType: systemEnum = weighted_random<systemEnum>(

@@ -12,6 +12,7 @@ import ResourceEnum from "../enums/resource.enum";
 import seedrandom from 'seedrandom'
 
 const planetGenerator = (systemType: systemEnum, systemId: string, seed: string): planetSchema => {
+    seed = seed.toUpperCase()
     const random = seedrandom(seed)
     const system = SystemGeneratorConstant[systemType as unknown as keyof typeof systemEnum]
     const biome = weighted_random<biomeEnum>(
