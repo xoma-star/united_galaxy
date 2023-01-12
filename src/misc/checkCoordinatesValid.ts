@@ -13,7 +13,7 @@ const checkCoordinatesValid = (x: string, y: string) => {
                 rnd = random()
             }
         }
-        return rnd <= 0.2
+        return rnd <= 0.15
     }
     return new RegExp(/[0-9a-fA-F]{3}/).test(x) && new RegExp(/[0-9a-fA-F]{3}/).test(y)
 
