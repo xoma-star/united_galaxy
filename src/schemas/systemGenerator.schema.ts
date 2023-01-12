@@ -13,7 +13,7 @@ type SystemGeneratorSchema = {
             min: number,
             max: number,
             chance: {
-                [K in keyof typeof BiomeEnum]?: number
+                [K in keyof typeof BiomeEnum]: number
             }
         },
         resourcesMultiplier: {

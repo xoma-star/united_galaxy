@@ -4,8 +4,8 @@ import SystemGeneratorConstant from "../constants/systemGenerator.constant";
 describe('Chance of biome', () => {
     test('Default systems', () => {
         let a = 0;
-        (Object.keys(SystemGeneratorConstant.DEFAULT.planets.chance) as (keyof typeof SystemGeneratorConstant.DEFAULT.planets.chance)[])
-            .forEach(x => a += SystemGeneratorConstant.DEFAULT.planets.chance[x])
+        (Object.keys(SystemGeneratorConstant.YELLOW.planets.chance) as (keyof typeof SystemGeneratorConstant.YELLOW.planets.chance)[])
+            .forEach(x => a += SystemGeneratorConstant.YELLOW.planets.chance[x])
         expect(a).toEqual(1)
     })
     test('Red systems', () => {
