@@ -1,8 +1,8 @@
 import systemGeneratorSchema from "../schemas/systemGenerator.schema";
 
 const SystemGeneratorConstant: systemGeneratorSchema = {
-    DEFAULT: {
-        chance: 0.8,
+    YELLOW: {
+        chance: 0.6,
         controlledByChance: {
             CONFLICT: 0,
             GOVERNMENT: 0.6,
@@ -32,7 +32,7 @@ const SystemGeneratorConstant: systemGeneratorSchema = {
         }
     },
     BLUE: {
-        chance: 0.075,
+        chance: 0.2,
         controlledByChance: {
             CONFLICT: 0.4,
             GOVERNMENT: 0.5,
@@ -92,7 +92,7 @@ const SystemGeneratorConstant: systemGeneratorSchema = {
         }
     },
     GREEN: {
-        chance: 0.075,
+        chance: 0.15,
         controlledByChance: {
             CONFLICT: 0.3,
             GOVERNMENT: 0.3,

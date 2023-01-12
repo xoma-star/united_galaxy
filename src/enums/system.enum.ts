@@ -1,8 +1,8 @@
 enum SystemEnum {
-    DEFAULT = 'желтая',
-    RED = 'красная',
-    GREEN = 'зеленая',
-    BLUE = 'синяя'
+    YELLOW = 'YELLOW',
+    RED = 'RED',
+    GREEN = 'GREEN',
+    BLUE = 'BLUE'
 }
 
 export default SystemEnum

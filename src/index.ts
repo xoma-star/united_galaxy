@@ -10,6 +10,6 @@ const token = '5828331861:AAHs0VGlM4BJhJbWF9lVQxEeL8j187m_QcQ'
 //     {command: '/start', description: 'Приветственное сообщение'},
 //     {command: '/travel', description: 'Перелет в другую систему'}
 // ])
-//
+
 // addListeners(bot)
 startExpress()
