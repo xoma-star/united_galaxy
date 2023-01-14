@@ -3,6 +3,7 @@ import systemGeneratorSchema from "../schemas/systemGenerator.schema";
 const SystemGeneratorConstant: systemGeneratorSchema = {
     YELLOW: {
         chance: 0.6,
+        color: 'желтый',
         controlledByChance: {
             CONFLICT: 0,
             GOVERNMENT: 0.6,
@@ -33,6 +34,7 @@ const SystemGeneratorConstant: systemGeneratorSchema = {
     },
     BLUE: {
         chance: 0.2,
+        color: 'голубой',
         controlledByChance: {
             CONFLICT: 0.4,
             GOVERNMENT: 0.5,
@@ -63,6 +65,7 @@ const SystemGeneratorConstant: systemGeneratorSchema = {
     },
     RED: {
         chance: 0.05,
+        color: 'красный',
         controlledByChance: {
             CONFLICT: 0,
             GOVERNMENT: 0,
@@ -93,6 +96,7 @@ const SystemGeneratorConstant: systemGeneratorSchema = {
     },
     GREEN: {
         chance: 0.15,
+        color: 'зеленый',
         controlledByChance: {
             CONFLICT: 0.3,
             GOVERNMENT: 0.3,

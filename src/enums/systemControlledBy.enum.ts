@@ -1,8 +1,8 @@
 enum SystemControlledByEnum {
-    GOVERNMENT = 'правительство',
-    PIRATE = 'пираты',
-    CONFLICT = 'конфликт',
-    REBELS = 'повстанцы'
+    GOVERNMENT = 'GOVERNMENT',
+    PIRATE = 'PIRATE',
+    CONFLICT = 'CONFLICT',
+    REBELS = 'REBELS'
 }
 
 export default SystemControlledByEnum

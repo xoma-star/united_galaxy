@@ -8,7 +8,7 @@ const onCallbackListener = (bot: TelegramBot) => {
         const query: CallbackQueryDataSchema = JSON.parse(msg.data || '{}')
         if(!query.command) return
         switch (query.command) {
-            case CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM: return moveToSystemCallbackListener(bot, msg)
+            case CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM: return moveToSystemCallbackListener(bot, msg, query.coordinates)
         }
     })
 }

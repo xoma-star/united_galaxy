@@ -9,7 +9,8 @@ const backdrops = [
     'https://cdn.midjourney.com/8fad6247-223b-4b58-94aa-0b12b084a36d/grid_0.png',
     'https://cdn.midjourney.com/a3574fd7-a28c-4cfb-b3e9-b7da2503370b/grid_0.png',
     'https://cdn.midjourney.com/76397452-d368-4499-8739-a2ff658646a0/grid_0.png',
-    'https://cdn.midjourney.com/c6e65a64-00bc-4600-b759-8a8b7f1a1e89/grid_0.png'
+    'https://cdn.midjourney.com/c6e65a64-00bc-4600-b759-8a8b7f1a1e89/grid_0.png',
+    'https://cdn.midjourney.com/39c430dd-965d-424e-9771-d341a629c327/grid_0.png'
 ]
 
 export default backdrops

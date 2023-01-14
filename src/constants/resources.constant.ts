@@ -213,5 +213,36 @@ const ResourcesConstant: ResourcesSchema = {
     MAINTAIN: {
         name: 'MAINTAIN',
         description: '(служебное) ремонт колонии'
+    },
+    HYPER_FUEL: {
+        name: 'гипертопливо',
+        description: 'нужно для заправки варп-двигателя'
+    },
+    WARP_DRIVE: {
+        name: 'варп-двигатель',
+        description: 'нужен для перемещения между системами',
+        starShipConsumable: true
+    },
+    COBALT_DRIVE: {
+        name: 'кобальтовый привод',
+        description: 'нужен для варпа в синие системы',
+        starShipConsumable: true
+    },
+    CADMIUM_DRIVE: {
+        name: 'кадмиевый привод',
+        description: 'нужен для варпа в красные системы',
+        starShipConsumable: true
+    },
+    INDIUM_DRIVE: {
+        name: 'индиевый привод',
+        description: 'нужен для варпа в зеленые системы',
+        starShipConsumable: true
+    },
+    PLANET_SCANNER: {
+        name: 'планетарный сканер',
+        description: 'нужен для получения информации о планетах',
+        starShipConsumable: true
     }
 }
+
+export default ResourcesConstant
