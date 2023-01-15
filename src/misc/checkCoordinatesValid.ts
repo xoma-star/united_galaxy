@@ -1,6 +1,8 @@
 import seedrandom from "seedrandom";
 
 const checkCoordinatesValid = (x: string, y: string) => {
+    x = x.toUpperCase()
+    y = y.toUpperCase()
     if(new RegExp(/[0-9a-fA-F]{4}/).test(x) && new RegExp(/[0-9a-fA-F]{4}/).test(y)) {
         const random = seedrandom([x.slice(0, 3), y.slice(0, 3)].join(':'))
         const coordinates = [

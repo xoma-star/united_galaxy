@@ -19,8 +19,8 @@ const startExpress = () => {
         for(let i = 0; i < 16; i++){
             const a: string[] = []
             for(let j = 0; j < 16; j++){
-                const x = `${coordinates[0]}${i.toString(16)}`
-                const y = `${coordinates[1]}${j.toString(16)}`
+                const x = `${coordinates[0]}${j.toString(16)}`
+                const y = `${coordinates[1]}${i.toString(16)}`
                 if(checkCoordinatesValid(x, y)){
                     a.push(systemGenerator(`${x}:${y}`).type)
                 }
