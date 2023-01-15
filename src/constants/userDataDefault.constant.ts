@@ -15,6 +15,7 @@ const userDataDefaultConstant = (tg_id: number): userDataSchema => {
         }
         coordinates[0] = a.join('')
         coordinates[1] = b.join('')
+        console.log(coordinates)
     }
 
     return {
