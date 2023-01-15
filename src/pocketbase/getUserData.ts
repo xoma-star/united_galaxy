@@ -1,6 +1,7 @@
 import pb from "./index";
 import UserDataSchema from "../schemas/userData.schema";
 import signupUser from "./signupUser";
+import UserDataDefaultConstant from "../constants/userDataDefault.constant";
 
 const getUserData = async (tg_id: number, messageFrom?: number): Promise<UserDataSchema> => {
     try {
@@ -11,7 +12,7 @@ const getUserData = async (tg_id: number, messageFrom?: number): Promise<UserDat
         return (list.items[0] || await signupUser(tg_id)) as UserDataSchema
     } catch (e) {
         console.log(e)
-        throw new Error('Неизвестная ошибка')
+        return UserDataDefaultConstant(tg_id)
     }
 }
 
