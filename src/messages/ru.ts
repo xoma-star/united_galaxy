@@ -8,6 +8,14 @@ import systemControlledByConstant from "../constants/SystemControlledBy.constant
 import calculateDistance from "../misc/calculateDistance";
 import SystemSchema from "../schemas/system.schema";
 import plural from 'plural-ru'
+import globalConstant from "../constants/global.constant";
+import capitalize from "../misc/capitalize";
+import systemGenerator from "../generators/system.generator";
+import SystemControlledByConstant from "../constants/SystemControlledBy.constant";
+import biomeConstant from "../constants/biome.constant";
+import getRandomFromArray from "../misc/getRandomFromArray";
+import planetSchema from "../schemas/planet.schema";
+import landscapeConstant from "../constants/landscape.constant";
 
 const MessagesRU = {
     START_MESSAGE: 'Добро пожаловать на просторы Единой Галактики ✨! Где это? Вы когда-нибудь слышали о мультивселенных? ' +
@@ -77,7 +85,7 @@ const MessagesRU = {
     },
     INVALID_COORDINATES: 'Некорректные координаты. Вы можете воспользоваться картой.',
     SYSTEM_INFO: (system: SystemSchema, coordinates: string, currentCoordinates: string) => {
-        return `Информация о звездной системе ${system.name}:\n` +
+        return `Информация о звездной системе ${system.name}\n` +
         `Координаты: ${coordinates}\n` +
         `Цвет звезды: ${SystemGeneratorConstant[system.type].color}\n`+
         `Под контролем: ${systemControlledByConstant[system.controlledBy].name}\n` +
@@ -86,10 +94,40 @@ const MessagesRU = {
     },
     ERROR_UNKNOWN: 'Неизвестная ошибка.',
     COMPANY_INFO: (companyName: string, createdAt: Date, coloniesCount: number) => {
-        return `Информация о компании ${companyName}: \
-        Дата основания: ${new Date(createdAt).toLocaleString('ru', {weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric'})} \
-        Управляет ${coloniesCount} ${plural(coloniesCount, 'колонией', 'колониями')}
-        `
+        return `Информация о компании ${companyName}: \n` +
+        `Дата основания: ${new Date(createdAt).toLocaleString('ru', {weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric'})} \n` +
+        `Управляет ${coloniesCount} ${plural(coloniesCount, 'колонией', 'колониями')}`
+    },
+    TRAVEL_EMPTY_COORDINATES: 'Введите после пробела координаты системы: /travel {координаты}',
+    SHIP_INFO: (technologies: ResourceEnum[]) => {
+        return `*Информация о корабле* \n` +
+            `Установленные модули: \n` +
+            `${technologies.map(x => ResourcesConstant[x].name)}`
+    },
+    SHIP_INVENTORY: (resources: {[K in keyof typeof ResourceEnum]?: number}) => {
+        return `*Грузовой отсек*\n` +
+        `Заполненность: ${(Object.keys(resources) as ResourceEnum[])
+            .map(x => resources[x])
+            .reduce((a, b) => (a || 0) + (b || 0), 0)}/${globalConstant.baseShipCargoLoad} \n` +
+        `${(Object.keys(resources) as ResourceEnum[]).map(x => 
+            `${capitalize(ResourcesConstant[x].name)}: ${resources[x]}`
+        )}`
+    },
+    SYSTEM_INFO_SELF: (coordinates: string) => {
+        const system = systemGenerator(coordinates)
+        return `Вы находитесь в системе ${system.name}\n` +
+            `Координаты системы: ${coordinates.toUpperCase()}\n` +
+            `Цвет звезды: ${SystemGeneratorConstant[system.type].color}\n` +
+            `Под контролем: ${SystemControlledByConstant[system.controlledBy].name}\n` +
+            `Количество планет: ${system.planets.length} (для подробной информации задействуйте планетарный сканер)`
+    },
+    PLANET_SCANNER: (planets: planetSchema[]) => {
+        return `Задействован планетарный сканер. Получаю информацию о следующих планетах: \n` + planets.map(x => x.name).join(', ')
+    },
+    PLANET_INFO: (planet: planetSchema, planetIndex: number) => {
+        return `${capitalize(getRandomFromArray(biomeConstant[planet.biome].possibleNames))} планета ${planet.name} (${planetIndex + 1}-ая от звезды)\n` +
+            `Биом: ${biomeConstant[planet.biome].name}\n` +
+            `Тип поверхности: ${landscapeConstant[planet.surface].name}`
     }
 } as const satisfies MessagesSchema
 

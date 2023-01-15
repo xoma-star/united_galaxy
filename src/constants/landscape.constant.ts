@@ -42,3 +42,5 @@ const LandscapeConstant: LandscapeSchema = {
         description: 'газовая планета'
     }
 }
+
+export default LandscapeConstant

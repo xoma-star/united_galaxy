@@ -10,6 +10,7 @@ import normalDistribution from "../misc/normalDistribution";
 import { v5 as uuidv5 } from 'uuid'
 import ResourceEnum from "../enums/resource.enum";
 import seedrandom from 'seedrandom'
+import systemNameGenerator from "./system.name.generator";
 
 const planetGenerator = (systemType: systemEnum, systemId: string, seed: string): planetSchema => {
     seed = seed.toUpperCase()
@@ -51,7 +52,7 @@ const planetGenerator = (systemType: systemEnum, systemId: string, seed: string)
     return {
         biome,
         systemId,
-        name: '',
+        name: systemNameGenerator(),
         atmosphereLevel,
         colonies: [],
         difficulty: 1,

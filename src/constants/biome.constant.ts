@@ -3,6 +3,7 @@ import BiomeSchema from "../schemas/biome.schema";
 const BiomeConstant: BiomeSchema = {
     LUSH: {
         possibleNames: ['травянистая', 'тропическая', 'зеленая', 'цветущая', 'умеренная', 'плодородная', 'заросшая', 'изобильная'],
+        name: 'цветущий',
         difficultyMultiplier: 0.8,
         possibleSurfaces: {
             LAKY: 1,
@@ -39,6 +40,7 @@ const BiomeConstant: BiomeSchema = {
     },
     BARREN: {
         possibleNames: ['пустынная', 'каменистая', 'суровая', 'сухая', 'покинутая', 'пустынная', 'пыльная', 'опустошённая', 'ветреная'],
+        name: 'пустынный',
         difficultyMultiplier: 1.1,
         possibleSurfaces: {
             PANGEAN: 1
@@ -70,6 +72,7 @@ const BiomeConstant: BiomeSchema = {
     },
     DEAD: {
         possibleNames: ['мёртвая', 'пустая', 'опустошённая', 'безжизненная', 'покинутая', 'непригодная к жизни', 'безвоздушная'],
+        name: 'мертвый',
         difficultyMultiplier: 1.2,
         possibleSurfaces: {
             PANGEAN: 1
@@ -100,6 +103,7 @@ const BiomeConstant: BiomeSchema = {
     },
     ICY: {
         possibleNames: ['замёрзшая', 'обледенелая', 'арктическая', 'покрытая ледниками', 'морозная', 'ледяная', 'застывшая', 'заснеженная', 'ледниковая'],
+        name: 'ледяной',
         difficultyMultiplier: 1.1,
         possibleSurfaces: {
             CONTINENTAL: 1,
@@ -131,6 +135,7 @@ const BiomeConstant: BiomeSchema = {
     },
     EXOTIC: {
         possibleNames: ['экзотическая', 'аномальная', 'искаженная'],
+        name: 'аномалия',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             PANGEAN: 1
@@ -157,6 +162,7 @@ const BiomeConstant: BiomeSchema = {
     },
     MARSH: {
         possibleNames: ['болотная', 'заболоченная', 'тропическая', 'туманная', 'мглистая', 'топкая', 'зыбкая', 'вонючая', 'сырая'],
+        name: 'болотистый',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             CONTINENTAL: 1,
@@ -183,6 +189,7 @@ const BiomeConstant: BiomeSchema = {
     },
     RADIATED: {
         possibleNames: ['облучённая', 'радиоактивная', 'заражённая', 'ядерная', 'изотопная'],
+        name: 'радиоактивный',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             LAKY: 1,
@@ -211,6 +218,7 @@ const BiomeConstant: BiomeSchema = {
     },
     SCORCHED: {
         possibleNames: ['обугленная', 'безводная', 'выжженная', 'горячая', 'огненная', 'кипящая', 'жаркая', 'раскалённая'],
+        name: 'выжженный',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             PANGEAN: 1
@@ -240,6 +248,7 @@ const BiomeConstant: BiomeSchema = {
     },
     TOXIC: {
         possibleNames: ['токсичная', 'ядовитая', 'отравленная', 'кислотная', 'щёлочная', 'едкая', 'гниющая'],
+        name: 'отравленный',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             LAKY: 1,
@@ -269,6 +278,7 @@ const BiomeConstant: BiomeSchema = {
     },
     VOLCANIC: {
         possibleNames: ['лавовая', 'магматическая', 'извергающаяся', 'вулканическая', 'пепельная', 'расплавленная', 'полыхающая', 'базальтовая'],
+        name: 'вулканический',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             ARCHIPELAGO: 1,
@@ -300,6 +310,7 @@ const BiomeConstant: BiomeSchema = {
     },
     GAS: {
         possibleNames: ['газовая', 'состоящая из газа'],
+        name: 'газовый',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             GAS: 1
@@ -327,6 +338,7 @@ const BiomeConstant: BiomeSchema = {
     },
     WATER: {
         possibleNames: ['покрытая водой', 'затопленная'],
+        name: 'водяной',
         difficultyMultiplier: 1,
         possibleSurfaces: {
             OCEANIC: 1,

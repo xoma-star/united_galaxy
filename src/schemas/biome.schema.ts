@@ -26,7 +26,8 @@ type BiomeSchema = {
         },
         possibleResources: {
             [K in keyof typeof resourceEnum]?: number
-        }
+        },
+        name: string
     }
 }
 

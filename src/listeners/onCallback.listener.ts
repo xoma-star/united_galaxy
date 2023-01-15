@@ -2,6 +2,8 @@ import TelegramBot, {CallbackQuery} from "node-telegram-bot-api";
 import CallbackQueryDataSchema from "../schemas/callbackQueryData.schema";
 import moveToSystemCallbackListener from "./moveToSystemCallback.listener";
 import CallbackQueryCommandsEnum from '../enums/callbackQueryCommands.enum'
+import onStarshipInventoryCallbackListener from "./onStarshipInventoryCallback.listener";
+import onPlanetScannerCallbackListener from "./onPlanetScannerCallback.listener";
 
 const onCallbackListener = (bot: TelegramBot) => {
     bot.on('callback_query', (msg: CallbackQuery) => {
@@ -9,6 +11,8 @@ const onCallbackListener = (bot: TelegramBot) => {
         if(!query.command) return
         switch (query.command) {
             case CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM: return moveToSystemCallbackListener(bot, msg, query.coordinates)
+            case CallbackQueryCommandsEnum.STARSHIP_INVENTORY: return onStarshipInventoryCallbackListener(bot, msg)
+            case CallbackQueryCommandsEnum.PLANET_SCANNER: return onPlanetScannerCallbackListener(bot, msg)
         }
     })
 }
