@@ -1,4 +1,4 @@
-const backdrops = [
+const backdrops: string[] = [
     'https://cdn.midjourney.com/fde7a7a5-7c28-45b1-b8ff-963b7d398fb9/grid_0.png',
     'https://cdn.midjourney.com/c2b59052-347b-4a55-a581-5178c92c7687/grid_0.png',
     'https://cdn.midjourney.com/2cb00430-389b-420f-8b78-59dc1d2b3e09/grid_0.png',

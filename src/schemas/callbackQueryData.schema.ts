@@ -1,7 +1,7 @@
 import CallbackQueryCommandsEnum from '../enums/callbackQueryCommands.enum'
 
 interface moveToSystem{
-    command: CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM | CallbackQueryCommandsEnum.PLANET_SCANNER,
+    command: CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM | CallbackQueryCommandsEnum.PLANET_SCANNER | CallbackQueryCommandsEnum.STARSHIP_MOVE_SYSTEM_CONFIRM,
     coordinates: string
 }
 

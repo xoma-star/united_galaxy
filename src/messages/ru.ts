@@ -78,8 +78,8 @@ const MessagesRU = {
                 break;
         }
         return `Перелет по координатам ${coordinates}.\n` +
-            `Расстояние до системы - ${Intl.NumberFormat('ru', {notation: 'compact'}).format(distance)} св. л.\n` +
-            `Затраты гипертоплива - ${Intl.NumberFormat('ru', {notation: 'compact'}).format(distance * 5)} ед.\n` +
+            `Расстояние до системы - ${Intl.NumberFormat('ru', {notation: 'compact'}).format(Math.floor(distance))} св. л.\n` +
+            `Затраты гипертоплива - ${Intl.NumberFormat('ru', {notation: 'compact'}).format(Math.floor(distance * globalConstant.hyperFuelPerYear))} ед.\n` +
             `Класс звезды - ${SystemGeneratorConstant[systemType].color}.\n` +
             (systemType !== SystemEnum.YELLOW ? `Требуется ${drive}` : drive)
     },
@@ -128,7 +128,14 @@ const MessagesRU = {
         return `${capitalize(getRandomFromArray(biomeConstant[planet.biome].possibleNames))} планета ${planet.name} (${planetIndex + 1}-ая от звезды)\n` +
             `Биом: ${biomeConstant[planet.biome].name}\n` +
             `Тип поверхности: ${landscapeConstant[planet.surface].name}`
-    }
+    },
+    MOVE_TO_SAME_PLACE: 'Вы уже находитесь здесь.',
+    NOT_ENOUGH_FUEL: (have: number, need: number) => `Недостаточно топлива: у вас ${have} из ${need}`,
+    STARSHIP_DEPARTURE: 'Подготовка к варп-прыжку...',
+    WARP_DRIVE_REQUIRED: 'Для перелета между системами необходимо установить варп-двигатель.',
+    INDIUM_DRIVE_REQUIRED: 'Для перелета в эту систему необходим индиевый привод',
+    CADMIUM_DRIVE_REQUIRED: 'Для перелета в эту систему необходим кадмиевый привод',
+    COBALT_DRIVE_REQUIRED: 'Для перелета в эту систему необходим кобальтовый привод'
 } as const satisfies MessagesSchema
 
 export default MessagesRU
