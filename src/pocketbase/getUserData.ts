@@ -11,7 +11,7 @@ const getUserData = async (tg_id: number, messageFrom?: number): Promise<UserDat
         return (list.items[0] || await signupUser(tg_id)) as UserDataSchema
     } catch (e) {
         console.log(e)
-        return {} as UserDataSchema
+        throw new Error('Неизвестная ошибка')
     }
 }
 
