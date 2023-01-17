@@ -4,7 +4,8 @@ type ResourcesSchema = {
     [K in keyof typeof ResourceEnum]: {
         name: string,
         starShipConsumable?: boolean,
-        description: string
+        description: string,
+        size: 's' | 'm' | 'l' | 'xl'
     }
 }
 

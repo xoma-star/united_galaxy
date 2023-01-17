@@ -5,11 +5,7 @@ import planetSchema from "./planet.schema";
 interface SystemSchema {
     id: string,
     name: string,
-    coordinates: {
-        x: number,
-        y: number,
-        z: number
-    },
+    coordinates: string,
     planets: planetSchema[],
     type: systemEnum,
     controlledBy: SystemControlledByEnum,

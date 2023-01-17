@@ -19,15 +19,15 @@ const romanNumeralGenerator = (number: number) => {
         .replace(/I{4}/g, 'IV')
 };
 
-const systemNameGenerator = (seed: string) => {
+const colonyNameGenerator = (seed: string) => {
     const random = seedrandom(seed)
-    const randomRome = romanNumeralGenerator(Math.floor(random() * 255))
+    const randomRome = romanNumeralGenerator(Math.floor(random() * 60))
     return uniqueNamesGenerator({
-        dictionaries: [DICTIONARIES.dansk, DICTIONARIES.norsk],
+        dictionaries: [DICTIONARIES.dansk],
         separator: '-',
         style: "capital",
         seed
     }) + `-${randomRome}`
 }
 
-export default systemNameGenerator
+export default colonyNameGenerator

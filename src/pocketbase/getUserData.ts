@@ -3,10 +3,11 @@ import UserDataSchema from "../schemas/userData.schema";
 import signupUser from "./signupUser";
 import UserDataDefaultConstant from "../constants/userDataDefault.constant";
 
-const getUserData = async (tg_id: number, messageFrom?: number): Promise<UserDataSchema> => {
+const getUserData = async (tg_id: number, expandColonies: boolean = false): Promise<UserDataSchema> => {
     try {
         const list = await pb.collection('tg_users').getList(1, 1, {
-            filter: `tg_id = ${tg_id}`
+            filter: `tg_id = ${tg_id}`,
+            expand: expandColonies ? 'colonies' : ''
         })
 
         return (list.items[0] || await signupUser(tg_id)) as UserDataSchema

@@ -16,6 +16,7 @@ import biomeConstant from "../constants/biome.constant";
 import getRandomFromArray from "../misc/getRandomFromArray";
 import planetSchema from "../schemas/planet.schema";
 import landscapeConstant from "../constants/landscape.constant";
+import ColonySchema from "../schemas/colony.schema";
 
 const MessagesRU = {
     START_MESSAGE: 'Добро пожаловать на просторы Единой Галактики ✨! Где это? Вы когда-нибудь слышали о мультивселенных? ' +
@@ -101,17 +102,18 @@ const MessagesRU = {
     TRAVEL_EMPTY_COORDINATES: 'Введите после пробела координаты системы: /travel {координаты}',
     SHIP_INFO: (technologies: ResourceEnum[]) => {
         return `*Информация о корабле* \n` +
-            `Установленные модули: \n` +
-            `${technologies.map(x => ResourcesConstant[x].name)}`
+            `Установленные технологии: \n` +
+            technologies.map(x => ResourcesConstant[x].name).join(', ')
     },
     SHIP_INVENTORY: (resources: {[K in keyof typeof ResourceEnum]?: number}) => {
-        return `*Грузовой отсек*\n` +
+        return `Грузовой отсек\n` +
         `Заполненность: ${(Object.keys(resources) as ResourceEnum[])
             .map(x => resources[x])
             .reduce((a, b) => (a || 0) + (b || 0), 0)}/${globalConstant.baseShipCargoLoad} \n` +
-        `${(Object.keys(resources) as ResourceEnum[]).map(x => 
-            `${capitalize(ResourcesConstant[x].name)}: ${resources[x]}`
-        )}`
+        (Object.keys(resources) as ResourceEnum[])
+            .filter(x => (resources[x] || 0) > 0)
+            .map(x => `${capitalize(ResourcesConstant[x].name)}: ${resources[x]}`)
+            .join("\n")
     },
     SYSTEM_INFO_SELF: (coordinates: string) => {
         const system = systemGenerator(coordinates)
@@ -127,7 +129,11 @@ const MessagesRU = {
     PLANET_INFO: (planet: planetSchema, planetIndex: number) => {
         return `${capitalize(getRandomFromArray(biomeConstant[planet.biome].possibleNames))} планета ${planet.name} (${planetIndex + 1}-ая от звезды)\n` +
             `Биом: ${biomeConstant[planet.biome].name}\n` +
-            `Тип поверхности: ${landscapeConstant[planet.surface].name}`
+            `Тип поверхности: ${landscapeConstant[planet.surface].name}\n` +
+            `Плотность растительности: ${planet.floraLevel}/5\n` +
+            `Плостность живности: ${planet.faunaLevel}/5\n` +
+            `Средняя температура на поверхности: ${planet.temperature}°C\n` +
+            `Доступные ресурсы: ` + planet.resources.map(x => ResourcesConstant[x].name).join(', ')
     },
     MOVE_TO_SAME_PLACE: 'Вы уже находитесь здесь.',
     NOT_ENOUGH_FUEL: (have: number, need: number) => `Недостаточно топлива: у вас ${have} из ${need}`,
@@ -135,7 +141,27 @@ const MessagesRU = {
     WARP_DRIVE_REQUIRED: 'Для перелета между системами необходимо установить варп-двигатель.',
     INDIUM_DRIVE_REQUIRED: 'Для перелета в эту систему необходим индиевый привод',
     CADMIUM_DRIVE_REQUIRED: 'Для перелета в эту систему необходим кадмиевый привод',
-    COBALT_DRIVE_REQUIRED: 'Для перелета в эту систему необходим кобальтовый привод'
+    COBALT_DRIVE_REQUIRED: 'Для перелета в эту систему необходим кобальтовый привод',
+    NO_MODULES_AVAILABLE: 'Нет доступных технологий',
+    MODULES_AVAILABLE: 'Доступные для установки модули',
+    MODULE_ALREADY_INSTALLED: 'Модуль уже установлен',
+    MODULE_SUCCESSFULLY_INSTALLED: (module: ResourceEnum) => `Модуль ${capitalize(ResourcesConstant[module].name)} успешно установлен`,
+    COMPANY_RENAME_TOOLTIP: 'Для переименования используйте /change_name {новое название}. Разрешены буквы и цифры. Максимальная длина - 64 символа.',
+    RENAME_SUCCESS: (newName: string) => `Новое название компании записано в систему. Теперь она называется ${newName}`,
+    RENAME_FORMAT_ERROR: 'После удаления недоступных символов название стало пустым',
+    RENAME_TOO_LONG: 'Слишком длинное название',
+    PLANET_SCANNER_REQUIRED: 'Сначала установите планетарный сканер. Он позволит получать более подробную информацию о планетах.',
+    USERS_COLONIES: 'Информация о колониях',
+    FOUND_COLONY_SELECT_PLANET: 'Выберите планету для основания колонии. Не рекомендуется строить колонии на неразведанных планетах.',
+    NO_COLONIZATION_PLANETS: 'Нет планет, подходящих для колонизации. Переместитесь в другую систему.',
+    COLONIZATION_PLANET_INFO: (name: string, index: number) => `Планета ${name} (${index + 1}-я от звезды)`,
+    NOT_IN_SELECTED_SYSTEM: 'Вы в другой звездной системе',
+    COLONY_CREATED_SUCCESSFULLY: 'Маяк колонии установлен. Теперь необходимо построить базовые модули. Перейдите в ваши колонии, чтобы узнать подробнее.',
+    COLONY_ALREADY_EXISTS: 'На этой планете уже есть ваша колония. Выберите другую.',
+    LIST_SELF_COLONIES: 'Список колоний в вашем управлении. Здесь не только те, которые вы основали, но и к которым вам выдали доступ.',
+    LIST_SELF_COLONIES_EXACT: (colony: ColonySchema) => `Колония ${colony.name}. \n` +
+        `Расположена в ${colony.coordinates.system} на ${colony.coordinates.planetIndex + 1}-й планете от звезды.`,
+    NO_COLONIES_MANAGED: 'У вас нет управляемых колоний.'
 } as const satisfies MessagesSchema
 
 export default MessagesRU

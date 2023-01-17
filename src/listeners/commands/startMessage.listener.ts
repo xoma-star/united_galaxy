@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
-import KEYBOARDS from "../keyboards";
-import MESSAGES from "../messages";
-import getUserData from "../pocketbase/getUserData";
+import KEYBOARDS from "../../keyboards";
+import MESSAGES from "../../messages";
+import getUserData from "../../pocketbase/getUserData";
 
 const StartMessageListener = async (bot: TelegramBot, from: number) => {
     const userData = await getUserData(from)

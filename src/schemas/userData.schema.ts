@@ -1,4 +1,5 @@
 import ResourceEnum from "../enums/resource.enum";
+import ColonySchema from "./colony.schema";
 
 interface UserDataSchema{
     id?: string,
@@ -12,7 +13,11 @@ interface UserDataSchema{
     shipTechnologies: ResourceEnum[],
     balance: number,
     companyName: string,
-    colonies: string[]
+    colonies: string[],
+    bounty: number,
+    expand?: {
+        colonies?: ColonySchema[]
+    }
 }
 
 export default UserDataSchema

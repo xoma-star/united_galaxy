@@ -1,11 +1,13 @@
 import TelegramBot from "node-telegram-bot-api";
-import StartMessageListener from "./startMessage.listener";
-import StarshipButtonListener from "./starshipButton.listener";
-import onFirstStepsCommandListener from "./onFirstStepsCommand.listener";
-import onFirstStepsGalaxyCommandListener from "./onFirstStepsGalaxyCommand.listener";
-import onSelfCompanyInfoListener from "./onSelfCompanyInfo.listener";
-import onTravelCommandEmptyMessageListener from "./onTravelCommandEmptyMessage.listener";
-import onSystemInfoListener from "./onSystemInfo.listener";
+import StartMessageListener from "./commands/startMessage.listener";
+import StarshipButtonListener from "./messages/starshipButton.listener";
+import onFirstStepsCommandListener from "./commands/onFirstStepsCommand.listener";
+import onFirstStepsGalaxyCommandListener from "./commands/onFirstStepsGalaxyCommand.listener";
+import onSelfCompanyInfoListener from "./messages/onSelfCompanyInfo.listener";
+import onTravelCommandEmptyMessageListener from "./commands/onTravelCommandEmptyMessage.listener";
+import onSystemInfoListener from "./messages/onSystemInfo.listener";
+import changeNameEmptyListener from "./messages/changeNameEmpty.listener";
+import onSelfColoniesInfoListener from "./messages/onSelfColoniesInfo.listener";
 
 const onMessageListener = (bot: TelegramBot) => {
     bot.on('message', (message) => {
@@ -17,6 +19,8 @@ const onMessageListener = (bot: TelegramBot) => {
             case 'Компания': return onSelfCompanyInfoListener(bot, message)
             case '/travel': return onTravelCommandEmptyMessageListener(bot, message)
             case 'Система': return onSystemInfoListener(bot, message)
+            case '/change_name': return changeNameEmptyListener(bot, message)
+            case 'Колонии': return onSelfColoniesInfoListener(bot, message)
         }
     })
 }

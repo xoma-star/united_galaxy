@@ -25,7 +25,8 @@ const userDataDefaultConstant = (tg_id: number): userDataSchema => {
         shipTechnologies: [ResourceEnum.WARP_DRIVE],
         balance: 500000,
         companyName: 'Лучшая компания в мире',
-        colonies: []
+        colonies: [],
+        bounty: 0
     }
 }
 

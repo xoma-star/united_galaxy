@@ -1,7 +1,7 @@
 import TelegramBot, {Message} from "node-telegram-bot-api";
-import getUserData from "../pocketbase/getUserData";
-import MESSAGES from "../messages";
-import KEYBOARDS from "../keyboards";
+import getUserData from "../../pocketbase/getUserData";
+import MESSAGES from "../../messages";
+import KEYBOARDS from "../../keyboards";
 
 const onSystemInfoListener = async (bot: TelegramBot, message: Message) => {
     const userData = await getUserData(message.from?.id || -1)

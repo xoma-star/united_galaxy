@@ -8,9 +8,10 @@ const bot = new TelegramBot(token, {polling: true})
 
 bot.setMyCommands([
     {command: '/start', description: 'Приветственное сообщение'},
-    {command: '/travel', description: 'Перелет'},
     {command: '/first_steps', description: 'Первые шаги'},
-    {command: '/first_steps_galaxy', description: 'Первые шаги: устройство галактики'}
+    {command: '/first_steps_galaxy', description: 'Первые шаги: устройство галактики'},
+    {command: '/travel', description: 'Перелет'},
+    {command: '/change_name', description: 'Переименовать компанию'}
 ])
 
 addListeners(bot)

@@ -1,9 +1,9 @@
-import checkCoordinatesValid from "../misc/checkCoordinatesValid";
-import systemGenerator from "../generators/system.generator";
+import checkCoordinatesValid from "../../misc/checkCoordinatesValid";
+import systemGenerator from "../../generators/system.generator";
 import TelegramBot from "node-telegram-bot-api";
-import KEYBOARDS from "../keyboards";
-import getUserData from "../pocketbase/getUserData";
-import MESSAGES from "../messages";
+import KEYBOARDS from "../../keyboards";
+import getUserData from "../../pocketbase/getUserData";
+import MESSAGES from "../../messages";
 
 const onSystemInfoWebappListener = async (bot: TelegramBot, coordinates: string, replyTo: number) => {
     const coordinatesParsed = coordinates.split(':')

@@ -155,6 +155,46 @@ const BuildingsConstant: BuildingGeneratorSchema = {
 
         },
         canProduce: {}
+    },
+    THERMOREGULATION_MODULE: {
+        name: 'модуль терморегуляции',
+        buildResources: {},
+        canProduce: {}
+    },
+    CENTRAL_MODULE: {
+        name: 'центральный модуль',
+        canProduce: {},
+        buildResources: {}
+    },
+    COMMUNICATION_MODULE: {
+        name: 'модуль связи',
+        buildResources: {},
+        canProduce: {}
+    },
+    RADIATION_CLEANER_MODULE: {
+        name: 'модуль очистки от радиации',
+        buildResources: {},
+        canProduce: {}
+    },
+    TOXICITY_CLEANER_MODULE: {
+        name: 'модуль очистки от токсинов',
+        canProduce: {},
+        buildResources: {}
+    },
+    WATER_FLOAT_MODULE: {
+        name: 'модуль поддержки плавучести',
+        buildResources: {},
+        canProduce: {}
+    },
+    WATER_CLEANING_MODULE: {
+        name: 'модуль очистки воды',
+        canProduce: {},
+        buildResources: {}
+    },
+    LOW_ORBIT_ENGINE_MODULE: {
+        name: 'низкоорбитальный двигатель',
+        buildResources: {},
+        canProduce: {}
     }
 }
 

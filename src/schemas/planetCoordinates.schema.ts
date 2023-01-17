@@ -1,6 +1,6 @@
 type planetCoordinatesSchema = {
-    latitude: number,
-    longitude: number
+    system: string,
+    planetIndex: number
 }
 
 export default planetCoordinatesSchema

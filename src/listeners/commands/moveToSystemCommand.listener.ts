@@ -1,7 +1,7 @@
 import TelegramBot, {Message} from "node-telegram-bot-api";
-import MESSAGES from "../messages";
-import checkCoordinatesValid from "../misc/checkCoordinatesValid";
-import onSystemInfoWebappListener from "./onSystemInfoWebapp.listener";
+import MESSAGES from "../../messages";
+import checkCoordinatesValid from "../../misc/checkCoordinatesValid";
+import onSystemInfoWebappListener from "../webapp/onSystemInfoWebapp.listener";
 
 const moveToSystemCommandListener = async (bot: TelegramBot, msg: Message, match: RegExpExecArray | null) => {
     if(!match) return await bot.sendMessage(msg.from?.id || -1, 'Неизвестная ошибка')

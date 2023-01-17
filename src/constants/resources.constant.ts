@@ -3,245 +3,324 @@ import ResourcesSchema from "../schemas/resources.schema";
 const ResourcesConstant: ResourcesSchema = {
     AMMONIA: {
         name: 'аммиак',
-        description: 'бесцветный газ с резким характерным запахом'
+        description: 'бесцветный газ с резким характерным запахом',
+        size: "m"
     },
     STONE: {
         name: 'камень',
-        description: 'каменная порода. преобладает в составе большинства планет'
+        description: 'каменная порода. преобладает в составе большинства планет',
+        size: 'm'
     },
     WATER: {
         name: 'вода',
-        description: 'жидкость, необходимая для поддержания жизни в колониях'
+        description: 'жидкость, необходимая для поддержания жизни в колониях',
+        size: 'm'
     },
     HELIUM: {
         name: 'гелий',
-        description: 'бесцветный газ'
+        description: 'бесцветный газ',
+        size: 'm'
     },
     NITROGEN: {
         name: 'азот',
-        description: 'бесцветный газ'
+        description: 'бесцветный газ',
+        size: 'm'
     },
     SODIUM: {
         name: 'натрий',
-        description: 'мягкий металл'
+        description: 'мягкий металл',
+        size: 's'
     },
     HYDROGEN: {
         name: 'водород',
-        description: 'самый распространенный элемент во вселенной'
+        description: 'самый распространенный элемент во вселенной',
+        size: 'm'
     },
     BASALT: {
         name: 'базальт',
-        description: 'вулканическая горная порода'
+        description: 'вулканическая горная порода',
+        size: 'l'
     },
     GOLD: {
         name: 'золото',
-        description: 'драгоценный металл'
+        description: 'драгоценный металл',
+        size: 's'
     },
     CHLORINE: {
         name: 'хлор',
-        description: 'ядовитый газ'
+        description: 'ядовитый газ',
+        size: 'm'
     },
     CADMIUM: {
         name: 'кадмий',
-        description: 'мягкий ковкий тягучий металл серебристо-белого цвета'
+        description: 'мягкий ковкий тягучий металл серебристо-белого цвета',
+        size: 's'
     },
     LIQUID_SUN: {
         name: 'жидкая звезда',
-        description: 'частичка звезды. может производить много энергии'
+        description: 'частичка звезды. может производить много энергии',
+        size: 's'
     },
     URANIUM: {
         name: 'уран',
-        description: 'радиоактивный металл'
+        description: 'радиоактивный металл',
+        size: 's'
     },
     INDIUM: {
         name: 'индий',
-        description: 'очень мягкий металл серебристо-белого цвета'
+        description: 'очень мягкий металл серебристо-белого цвета',
+        size: 's'
     },
     FROST_CRYSTAL: {
         name: 'морозный кристал',
-        description: 'кристалл, образованный в естественной среде при низких температурах'
+        description: 'кристалл, образованный в естественной среде при низких температурах',
+        size: 'm'
     },
     COPPER: {
         name: 'медь',
-        description: 'мягкий, ковкий и пластичный металл с очень высокой тепло- и электропроводностью'
+        description: 'мягкий, ковкий и пластичный металл с очень высокой тепло- и электропроводностью',
+        size: 'm'
     },
     DEUTERIUM: {
         name: 'дейтерий',
-        description: 'стабильный изотоп водорода с атомной массой, равной 2'
+        description: 'стабильный изотоп водорода с атомной массой, равной 2',
+        size: 'm'
     },
     IRON: {
         name: 'железо',
-        description: 'ковкий переходный металл серебристо-белого цвета с высокой химической реакционной способностью'
+        description: 'ковкий переходный металл серебристо-белого цвета с высокой химической реакционной способностью',
+        size: 'm'
     },
     STONE_DUST: {
         name: 'каменная пыль',
-        description: 'каменная пыль'
+        description: 'каменная пыль',
+        size: 'xl'
     },
     OXYGEN: {
         name: 'кислород',
-        description: 'при нормальных условиях — газ без цвета, вкуса и запаха'
+        description: 'при нормальных условиях — газ без цвета, вкуса и запаха',
+        size: 'm'
     },
     CARBON: {
         name: 'углерод',
-        description: 'основа органической жизни'
+        description: 'основа органической жизни',
+        size: 'l'
     },
     ASH: {
         name: 'пепел',
-        description: 'результат сгорания'
+        description: 'результат сгорания',
+        size: 'l'
     },
     COBALT: {
         name: 'кобальт',
-        description: 'серебристо-белый, слегка желтоватый переходный металл с розоватым или синеватым отливом'
+        description: 'серебристо-белый, слегка желтоватый переходный металл с розоватым или синеватым отливом',
+        size: 'm'
     },
     CONDENSED_CARBON: {
         name: 'сжатый углерод',
-        description: 'углерод, у которого снижено расстояние между атомами'
+        description: 'углерод, у которого снижено расстояние между атомами',
+        size: 'm'
     },
     CONDENSED_OXYGEN: {
         name: 'сжатый кислород',
-        description: 'кислород, у которого снижено расстояние между атомами'
+        description: 'кислород, у которого снижено расстояние между атомами',
+        size: 'm'
     },
     DIAMOND: {
         name: 'алмаз',
-        description: 'сверхпрочный минерал, образованный из углерода'
+        description: 'сверхпрочный минерал, образованный из углерода',
+        size: 's'
     },
     IRON_DUST: {
         name: 'железная пыль',
-        description: 'остаток от обработки железа'
+        description: 'остаток от обработки железа',
+        size: 'm'
     },
     PHOSPHORUS: {
         name: 'фосфор',
-        description: 'фосфор'
+        description: 'фосфор',
+        size: 's'
     },
     PLATINUM: {
         name: 'платина',
-        description: 'платина'
+        description: 'платина',
+        size: "m"
     },
     PYRITE: {
         name: 'пирит',
-        description: 'пирит'
+        description: 'пирит',
+        size: "m"
     },
     QUARTZ: {
         name: 'кварц',
-        description: 'кварц'
+        description: 'кварц',
+        size: 's'
     },
     RADON: {
         name: 'радон',
-        description: 'радон'
+        description: 'радон',
+        size: 'l'
     },
     SALT: {
         name: 'соль',
-        description: 'соединение натрия и хлора'
+        description: 'соединение натрия и хлора',
+        size: 'xl'
     },
     SILICON: {
         name: 'кремний',
-        description: 'кремний'
+        description: 'кремний',
+        size: 'm'
     },
     SILVER: {
         name: 'серебро',
-        description: 'серебро'
+        description: 'серебро',
+        size: 'm'
     },
     TRITIUM: {
         name: 'тритий',
-        description: 'тритий'
+        description: 'тритий',
+        size: 's'
     },
     SOIL: {
         name: 'почва',
-        description: 'почва'
+        description: 'почва',
+        size: 'l'
     },
     ALUMINIUM: {
         name: 'алюминий',
-        description: 'алюминий'
+        description: 'алюминий',
+        size: 'm'
     },
     LEAD: {
         name: 'свинец',
-        description: 'свинец'
+        description: 'свинец',
+        size: 'm'
     },
     OIL: {
         name: 'нефть',
-        description: 'нефть'
+        description: 'нефть',
+        size: 'm'
     },
     GLASS_WOOL: {
         name: 'стекловата',
-        description: 'хороший утеплитель'
+        description: 'хороший утеплитель',
+        size: 'm'
     },
     PLASTIC: {
         name: 'пластик',
-        description: 'получается из нефти'
+        description: 'получается из нефти',
+        size: 'l'
     },
     STAINLESS_STEEL: {
         name: 'закаленная сталь',
-        description: 'закаленная сталь'
+        description: 'закаленная сталь',
+        size: 'm'
     },
     TITANIUM: {
         name: 'титан',
-        description: 'металл'
+        description: 'металл',
+        size: 's'
     },
     WORKER: {
         name: 'рабочий',
-        description: '(служебное) нужен для обслуживания построек в колониях'
+        description: '(служебное) нужен для обслуживания построек в колониях',
+        size: 's'
     },
     LIFE: {
         name: 'LIFE',
-        description: '(служебное) LIFE'
+        description: '(служебное) LIFE',
+        size: 's'
     },
     INTERSTELLAR_SCANNER: {
         name: 'межзвездный сканнер',
         description: 'позволяет осуществлять навигацию между звездными системами',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'xl'
     },
     FOOD: {
         name: 'еда',
-        description: 'необходима для поддержания жизни в колониях'
+        description: 'необходима для поддержания жизни в колониях',
+        size: 's'
     },
     CIRCUIT: {
         name: 'электросхема',
-        description: 'распечатанная плата, позволяющая управлять электроникой'
+        description: 'распечатанная плата, позволяющая управлять электроникой',
+        size: 's'
     },
     ENERGY: {
         name: 'энергия',
-        description: '(служебное) нужна для функционирования большинства построек'
+        description: '(служебное) нужна для функционирования большинства построек',
+        size: 's'
     },
     RADIO_CONSUMER: {
         name: 'приемник радиоволн',
-        description: 'принимает радиоволны. эффективен в космосе'
+        description: 'принимает радиоволны. эффективен в космосе',
+        size: 'l'
     },
     RADIO_EMITTER: {
         name: 'излучатель радиоволн',
-        description: 'излучает радиоволны. эффективен в космосе'
+        description: 'излучает радиоволны. эффективен в космосе',
+        size: 'l'
     },
     MAINTAIN: {
         name: 'MAINTAIN',
-        description: '(служебное) ремонт колонии'
+        description: '(служебное) ремонт колонии',
+        size: 's'
     },
     HYPER_FUEL: {
         name: 'гипертопливо',
-        description: 'нужно для заправки варп-двигателя'
+        description: 'нужно для заправки варп-двигателя',
+        size: 'l'
     },
     WARP_DRIVE: {
         name: 'варп-двигатель',
         description: 'нужен для перемещения между системами',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'xl'
     },
     COBALT_DRIVE: {
         name: 'кобальтовый привод',
         description: 'нужен для варпа в синие системы',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'l'
     },
     CADMIUM_DRIVE: {
         name: 'кадмиевый привод',
         description: 'нужен для варпа в красные системы',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'l'
     },
     INDIUM_DRIVE: {
         name: 'индиевый привод',
         description: 'нужен для варпа в зеленые системы',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'l'
     },
     PLANET_SCANNER: {
         name: 'планетарный сканер',
         description: 'нужен для получения информации о планетах',
-        starShipConsumable: true
+        starShipConsumable: true,
+        size: 'l'
+    },
+    IRIDIUM: {
+        name: 'иридий',
+        description: 'металл',
+        size: 's'
+    },
+    INSULATION: {
+        name: 'утеплитель',
+        description: 'вспененный материал, который позволяет сохранять тепло',
+        size: 'l'
+    },
+    FUNGAL_MOULD: {
+        name: 'грибковая плесень',
+        description: 'грибковая плесень',
+        size: 's'
+    },
+    SEEDS: {
+        name: 'семена',
+        description: 'посадить, полить, подождать',
+        size: 's'
     }
 }
 

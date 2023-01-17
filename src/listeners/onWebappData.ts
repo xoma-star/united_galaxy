@@ -1,5 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
-import onSystemInfoWebappListener from "./onSystemInfoWebapp.listener";
+import onSystemInfoWebappListener from "./webapp/onSystemInfoWebapp.listener";
 import MESSAGES from "../messages";
 
 const onWebappData = (bot: TelegramBot) => {

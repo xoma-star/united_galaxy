@@ -33,7 +33,7 @@ const systemGenerator = (seed: string): SystemSchema => {
         seed
     )
 
-    const name = systemNameGenerator()
+    const name = systemNameGenerator(seed)
     const planets: planetSchema[] = []
     const planetsCountInterval = [
         SystemGeneratorConstant[systemType as unknown as keyof typeof systemEnum].planets.min,
@@ -50,11 +50,7 @@ const systemGenerator = (seed: string): SystemSchema => {
         planets: planets,
         blackHole: true,
         controlledBy: systemControlledBy,
-        coordinates: {
-            x: Math.round(random() * 32 - 16),
-            y: Math.round(random() * 32 - 16),
-            z: Math.round(random() * 32 - 16)
-        },
+        coordinates: seed.toUpperCase(),
         name: name,
         type: systemType,
         id,

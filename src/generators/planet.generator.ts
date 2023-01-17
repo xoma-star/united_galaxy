@@ -46,13 +46,13 @@ const planetGenerator = (systemType: systemEnum, systemId: string, seed: string)
 
     const resources: ResourceEnum[] = [];
     (Object.keys(biomeStat.possibleResources) as (keyof typeof biomeStat.possibleResources)[]).forEach(k => {
-        if(1 - random() > (biomeStat.possibleResources[k] || 1)) resources.push(k as ResourceEnum)
+        if(1 - random() < (biomeStat.possibleResources[k] || 1)) resources.push(k as ResourceEnum)
     })
 
     return {
         biome,
         systemId,
-        name: systemNameGenerator(),
+        name: systemNameGenerator(seed),
         atmosphereLevel,
         colonies: [],
         difficulty: 1,
