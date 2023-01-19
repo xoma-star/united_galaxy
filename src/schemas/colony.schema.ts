@@ -1,6 +1,7 @@
 import PlanetCoordinatesSchema from "./planetCoordinates.schema";
 import ResourceEnum from "../enums/resource.enum";
 import BuildingSchema from "./building.schema";
+import UserDataSchema from "./userData.schema";
 
 interface ColonySchema {
     coordinates: PlanetCoordinatesSchema,
@@ -10,7 +11,10 @@ interface ColonySchema {
     storage: {
         [K in keyof typeof ResourceEnum]?: number
     },
-    modules: BuildingSchema[]
+    modules: BuildingSchema[],
+    expand?: {
+        owner: UserDataSchema[]
+    }
 
 }
 

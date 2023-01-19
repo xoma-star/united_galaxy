@@ -4,6 +4,7 @@ import BuildingSchema from "../schemas/building.schema";
 import ColoniesConstant from "./colonies.constant";
 import BuildingsConstant from "./buildings.constant";
 import colonyNameGenerator from "../generators/colonyName.generator";
+import {sha512} from "js-sha512";
 
 const colonyDataDefaultConstant = (system: systemSchema, planet: number, owner: string): ColonySchema => {
     const biome = system.planets[planet].biome
@@ -12,7 +13,8 @@ const colonyDataDefaultConstant = (system: systemSchema, planet: number, owner: 
         completed: false,
         resourcesRequired: BuildingsConstant[x].buildResources,
         level: 0,
-        maintain: 0
+        maintain: 0,
+        id: sha512(x + Date.now().toString()).slice(0, 5)
     }))
 
 

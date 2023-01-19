@@ -8,7 +8,8 @@ interface BuildingSchema {
     resourcesRequired: {
         [K in keyof typeof ResourceEnum]?: number
     },
-    completed: boolean
+    completed: boolean,
+    id: string
 }
 
 export default BuildingSchema

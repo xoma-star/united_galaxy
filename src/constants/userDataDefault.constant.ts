@@ -1,7 +1,6 @@
 import seedrandom from "seedrandom";
 import userDataSchema from "../schemas/userData.schema";
 import checkCoordinatesValid from "../misc/checkCoordinatesValid";
-import ResourceEnum from "../enums/resource.enum";
 
 const userDataDefaultConstant = (tg_id: number): userDataSchema => {
     const random = seedrandom(tg_id.toString())
@@ -19,10 +18,10 @@ const userDataDefaultConstant = (tg_id: number): userDataSchema => {
 
     return {
         tg_id,
-        coordinates: coordinates.join(':'),
+        coordinates: coordinates.join(':').toUpperCase(),
         items: {},
         transactions: [],
-        shipTechnologies: [ResourceEnum.WARP_DRIVE],
+        shipTechnologies: [],
         balance: 500000,
         companyName: 'Лучшая компания в мире',
         colonies: [],

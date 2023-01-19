@@ -11,6 +11,9 @@ import onChangeNameCallbackListener from "./callbacks/onChangeNameCallback.liste
 import onFoundColonyCallbackListener from "./callbacks/onFoundColonyCallback.listener";
 import onFoundColonyHereCallbackListener from "./callbacks/onFoundColonyHereCallback.listener";
 import onSelfColoniesListListener from "./callbacks/onSelfColoniesList.listener";
+import onColonyManageCallbackListener from "./callbacks/onColonyManageCallback.listener";
+import onManageBuildingsListener from "./callbacks/onManageBuildings.listener";
+import onDeliverBuildingResourcesListener from "./callbacks/onDeliverBuildingResources.listener";
 
 const onCallbackListener = (bot: TelegramBot) => {
     bot.on('callback_query', async (msg: CallbackQuery) => {
@@ -28,6 +31,9 @@ const onCallbackListener = (bot: TelegramBot) => {
             case CallbackQueryCommandsEnum.FOUND_COLONY: return onFoundColonyCallbackListener(bot, msg)
             case CallbackQueryCommandsEnum.FOUND_COLONY_HERE: return onFoundColonyHereCallbackListener(bot, msg, query.coordinates, query.planetIndex)
             case CallbackQueryCommandsEnum.LIST_SELF_COLONIES: return onSelfColoniesListListener(bot, msg)
+            case CallbackQueryCommandsEnum.MANAGE_COLONY: return onColonyManageCallbackListener(bot, msg, query.id)
+            case CallbackQueryCommandsEnum.MANAGE_COLONY_MODULES: return onManageBuildingsListener(bot, msg, query.id)
+            case CallbackQueryCommandsEnum.DELIVER_CONSTRUCTION_RESOURCES: return onDeliverBuildingResourcesListener(bot, msg, query.c, query.m)
         }
     })
 }

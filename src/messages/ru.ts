@@ -17,6 +17,9 @@ import getRandomFromArray from "../misc/getRandomFromArray";
 import planetSchema from "../schemas/planet.schema";
 import landscapeConstant from "../constants/landscape.constant";
 import ColonySchema from "../schemas/colony.schema";
+import calculateCargoLoad from "../misc/calculateCargoLoad";
+import BuildingsConstant from "../constants/buildings.constant";
+import BuildingSchema from "../schemas/building.schema";
 
 const MessagesRU = {
     START_MESSAGE: 'Добро пожаловать на просторы Единой Галактики ✨! Где это? Вы когда-нибудь слышали о мультивселенных? ' +
@@ -107,9 +110,7 @@ const MessagesRU = {
     },
     SHIP_INVENTORY: (resources: {[K in keyof typeof ResourceEnum]?: number}) => {
         return `Грузовой отсек\n` +
-        `Заполненность: ${(Object.keys(resources) as ResourceEnum[])
-            .map(x => resources[x])
-            .reduce((a, b) => (a || 0) + (b || 0), 0)}/${globalConstant.baseShipCargoLoad} \n` +
+        `Заполненность: ${calculateCargoLoad(resources)}/${globalConstant.baseShipCargoLoad} \n` +
         (Object.keys(resources) as ResourceEnum[])
             .filter(x => (resources[x] || 0) > 0)
             .map(x => `${capitalize(ResourcesConstant[x].name)}: ${resources[x]}`)
@@ -133,6 +134,7 @@ const MessagesRU = {
             `Плотность растительности: ${planet.floraLevel}/5\n` +
             `Плостность живности: ${planet.faunaLevel}/5\n` +
             `Средняя температура на поверхности: ${planet.temperature}°C\n` +
+            `Плотность атмосферы: ${Math.floor(planet.atmosphereLevel * 100)}% от земной\n` +
             `Доступные ресурсы: ` + planet.resources.map(x => ResourcesConstant[x].name).join(', ')
     },
     MOVE_TO_SAME_PLACE: 'Вы уже находитесь здесь.',
@@ -159,9 +161,24 @@ const MessagesRU = {
     COLONY_CREATED_SUCCESSFULLY: 'Маяк колонии установлен. Теперь необходимо построить базовые модули. Перейдите в ваши колонии, чтобы узнать подробнее.',
     COLONY_ALREADY_EXISTS: 'На этой планете уже есть ваша колония. Выберите другую.',
     LIST_SELF_COLONIES: 'Список колоний в вашем управлении. Здесь не только те, которые вы основали, но и к которым вам выдали доступ.',
-    LIST_SELF_COLONIES_EXACT: (colony: ColonySchema) => `Колония ${colony.name}. \n` +
-        `Расположена в ${colony.coordinates.system} на ${colony.coordinates.planetIndex + 1}-й планете от звезды.`,
-    NO_COLONIES_MANAGED: 'У вас нет управляемых колоний.'
+    LIST_SELF_COLONIES_EXACT: (colony: ColonySchema, sameSystem: boolean) => `Колония ${colony.name}. \n` +
+        `Расположена в ${colony.coordinates.system} на ${colony.coordinates.planetIndex + 1}-й планете от звезды.\n` +
+        `${!sameSystem ? 'Чтобы управлять колонией, переместитесь в ее систему.' : ''}`,
+    NO_COLONIES_MANAGED: 'У вас нет управляемых колоний.',
+    COLONY_INFO_FULL: (colony: ColonySchema) => `Терминал управления колонией ${colony.name}\n` +
+        `Модули колонии: ${colony.modules.map(x => BuildingsConstant[x.module_name].name).join(', ')}\n` +
+        `Заполненность склада: ${calculateCargoLoad(colony.storage)}/${globalConstant.baseColonyStorage}`,
+    COLONY_BUILDING_INFO: (building: BuildingSchema) => ` ${capitalize(BuildingsConstant[building.module_name].name)}\n` +
+        (building.completed ?
+            `` :
+            `Модуль не построен. Необходимые ресурсы: \n` +
+            (Object.keys(building.resourcesRequired) as ResourceEnum[])
+                .map(x => `${capitalize(ResourcesConstant[x].name)}: ${building.resourcesRequired[x]}`)
+                .join("\n")
+        ),
+    COLONY_BUILDING_DELIVERED_RESOURCE: (resource: ResourceEnum, count: number) => `${ResourcesConstant[resource].name}: доставлено на стройплощадку в количестве ${count}`,
+    COLONY_BUILDING_DELIVERED_LEFT: (resource: ResourceEnum, count: number) => count === 0 ? `Вы доставили все ${ResourcesConstant[resource].name}`
+        : `Чтобы закончить постройку, нужно еще ${count} ${ResourcesConstant[resource].name}`
 } as const satisfies MessagesSchema
 
 export default MessagesRU

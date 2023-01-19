@@ -320,7 +320,92 @@ const ResourcesConstant: ResourcesSchema = {
     SEEDS: {
         name: 'семена',
         description: 'посадить, полить, подождать',
+        size: 'm'
+    },
+    ANTIMATTER: {
+        name: 'антиматерия',
+        description: 'при контакте с материей уничтожается и выделяет огромное количество энергии',
         size: 's'
+    },
+    COMPOSITE_FRAME: {
+        name: 'прочный каркас',
+        size: 'l',
+        description: 'легкий и прочный каркас'
+    },
+    COMPOSITE_SHEATHING: {
+        name: 'композитная обшивка',
+        size: 'l',
+        description: 'устойчивая к внешним воздействиям обшивка. легко выдерживает самые тяжелые погодные условия'
+    },
+    EMPTY_TANK: {
+        name: 'пустой бак',
+        description: 'пустой бак',
+        size: 'l'
+    },
+    FRAME: {
+        name: 'простой каркас',
+        description: 'простой каркас',
+        size: 'l'
+    },
+    OXYGEN_TANK: {
+        name: 'кислородный бак',
+        description: 'бак со сжиженным кислородом',
+        size: 'l'
+    },
+    NUCLEAR_FUEL: {
+        name: 'радиоактивное топливо',
+        description: 'выделяет энергию за счет ядерного распада',
+        size: 'm'
+    },
+    SHEATHING: {
+        name: 'простая обшивка',
+        description: 'простая обшивка',
+        size: 'l'
+    },
+    WATER_TANK: {
+        name: 'водяной бак',
+        description: 'бак с водой',
+        size: 'l'
+    },
+    ADVANCED_CIRCUIT: {
+        name: 'продвинутая микросхема',
+        size: 's',
+        description: 'используется в сложных механизмах'
+    },
+    COMPUTER: {
+        name: 'ЭВМ',
+        size: 'm',
+        description: 'нужна для рассчетов'
+    },
+    WIRING: {
+        name: 'проводка',
+        size: 'm',
+        description: 'передает сигналы или энергию'
+    },
+    CONCRETE: {
+        name: 'бетонный раствор',
+        size: 'l',
+        description: 'при затвердевании образует очень твердый материал'
+    },
+    SOLAR_LAMP: {
+        name: 'солнечная лампа',
+        size: 'm',
+        description: 'излучает солнечный свет, необходимый для роста растений с Земли'
+    },
+    MACHINE: {
+        name: 'станок',
+        description: 'может работать с ресурсами',
+        size: 'xl'
+    },
+    SEAWEED: {
+        name: 'живые водоросли',
+        description: 'растут под водой',
+        size: 'm'
+    },
+    GRAVITINO_BALL: {
+        name: 'шар гравитино',
+        size: 'l',
+        description: 'шар, искажающий гравитационное поле'
     }
 }
 

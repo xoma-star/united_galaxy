@@ -20,11 +20,30 @@ interface foundColonyHere{
     planetIndex: number
 }
 
+interface colonyManage {
+    command: CallbackQueryCommandsEnum.MANAGE_COLONY |
+        CallbackQueryCommandsEnum.COLONY_COLLECT_ALL |
+        CallbackQueryCommandsEnum.MANAGE_COLONY_MODULES
+    ,
+    id: string
+}
+
+interface buildingManage{
+    command: CallbackQueryCommandsEnum.DELIVER_CONSTRUCTION_RESOURCES,
+    c: string,
+    m: string
+}
+
 interface starshipTechnology {
     command: CallbackQueryCommandsEnum.STARSHIP_INSTALL_TECHNOLOGY_CONFIRM,
     technology: ResourceEnum
 }
 
-type CallbackQueryDataSchema = moveToSystem | starshipInventory | starshipTechnology | foundColonyHere
+type CallbackQueryDataSchema = moveToSystem |
+    starshipInventory |
+    starshipTechnology |
+    foundColonyHere |
+    colonyManage |
+    buildingManage
 
 export default CallbackQueryDataSchema
