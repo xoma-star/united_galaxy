@@ -14,6 +14,10 @@ import travelToSystemDirectTooltipKeyboard from "./travelToSystemDirectTooltip.k
 import colonyInfoInlineKeyboard from "./colonyInfoInline.keyboard";
 import colonyManageKeyboard from "./colonyManage.keyboard";
 import buildingManageIncompleteKeyboard from "./buildingManageIncomplete.keyboard";
+import itemListNotFoundTooltipKeyboard from "./itemListNotFoundTooltip.keyboard";
+import stocksInlineTooltipKeyboard from "./stocksInlineTooltip.keyboard";
+import itemBuyTooltipKeyboard from "./itemBuyTooltip.keyboard";
+import itemSellTooltipKeyboard from "./itemSellTooltip.keyboard";
 
 const KEYBOARDS = {
     DEFAULT: DefaultKeyboard,
@@ -30,7 +34,11 @@ const KEYBOARDS = {
     TRAVEL_TO_SYSTEM_TOOLTIP: (c: string) => travelToSystemDirectTooltipKeyboard(c),
     COLONY_INFO_INLINE: (id: string) => colonyInfoInlineKeyboard(id),
     COLONY_MANAGE_INLINE: (id: string) => colonyManageKeyboard(id),
-    BUILDING_MANAGE_INCOMPLETE: (id: string, module: string) => buildingManageIncompleteKeyboard(id, module)
+    BUILDING_MANAGE_INCOMPLETE: (id: string, module: string) => buildingManageIncompleteKeyboard(id, module),
+    ITEM_LISTING_TOOLTIP: (name: ResourceEnum) => itemListNotFoundTooltipKeyboard(name),
+    STOCKS_TOOLTIP: stocksInlineTooltipKeyboard,
+    BUY_TOOLTIP: (name: ResourceEnum) => itemBuyTooltipKeyboard(name),
+    SELL_TOOLTIP: (name: ResourceEnum) => itemSellTooltipKeyboard(name)
 }
 
 export default KEYBOARDS

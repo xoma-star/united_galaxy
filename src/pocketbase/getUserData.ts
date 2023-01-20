@@ -3,17 +3,22 @@ import UserDataSchema from "../schemas/userData.schema";
 import signupUser from "./signupUser";
 import UserDataDefaultConstant from "../constants/userDataDefault.constant";
 
-const getUserData = async (tg_id: number, expandColonies: boolean = false): Promise<UserDataSchema> => {
+const getUserData = async (tg_id: number | string, expandColonies: boolean = false): Promise<UserDataSchema> => {
     try {
-        const list = await pb.collection('tg_users').getList(1, 1, {
-            filter: `tg_id = ${tg_id}`,
-            expand: expandColonies ? 'colonies' : ''
-        })
+        if(typeof tg_id === 'string'){
+            return await pb.collection('tg_users').getOne(tg_id)
+        }
+        else{
+            const list = await pb.collection('tg_users').getList(1, 1, {
+                filter: `tg_id = ${tg_id}`,
+                expand: expandColonies ? 'colonies' : ''
+            })
+            return (list.items[0] || await signupUser(tg_id)) as UserDataSchema
+        }
 
-        return (list.items[0] || await signupUser(tg_id)) as UserDataSchema
     } catch (e) {
         console.log(e)
-        return UserDataDefaultConstant(tg_id)
+        return UserDataDefaultConstant(parseInt(tg_id as string))
     }
 }
 

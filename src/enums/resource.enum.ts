@@ -78,7 +78,8 @@ enum resourceEnum {
     SOLAR_LAMP = 'SOLAR_LAMP',
     MACHINE = 'MACHINE',
     SEAWEED = 'SEAWEED',
-    GRAVITINO_BALL = 'GRAVITINO_BALL'
+    GRAVITINO_BALL = 'GRAVITINO_BALL',
+    MONEY = 'MONEY'
 }
 
 export default resourceEnum

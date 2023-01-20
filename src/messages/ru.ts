@@ -20,6 +20,8 @@ import ColonySchema from "../schemas/colony.schema";
 import calculateCargoLoad from "../misc/calculateCargoLoad";
 import BuildingsConstant from "../constants/buildings.constant";
 import BuildingSchema from "../schemas/building.schema";
+import marketItemSchema from "../schemas/marketItem.schema";
+import depthOfMarket from "../misc/depthOfMarket";
 
 const MessagesRU = {
     START_MESSAGE: 'Добро пожаловать на просторы Единой Галактики ✨! Где это? Вы когда-нибудь слышали о мультивселенных? ' +
@@ -178,7 +180,41 @@ const MessagesRU = {
         ),
     COLONY_BUILDING_DELIVERED_RESOURCE: (resource: ResourceEnum, count: number) => `${ResourcesConstant[resource].name}: доставлено на стройплощадку в количестве ${count}`,
     COLONY_BUILDING_DELIVERED_LEFT: (resource: ResourceEnum, count: number) => count === 0 ? `Вы доставили все ${ResourcesConstant[resource].name}`
-        : `Чтобы закончить постройку, нужно еще ${count} ${ResourcesConstant[resource].name}`
+        : `Чтобы закончить постройку, нужно еще ${count} ${ResourcesConstant[resource].name}`,
+    ITEM_NOT_FOUND: (target: string) => `Предмет не найден. Возможно, вы имели в виду: ${target}`,
+    ITEM_LISTING: (listing: marketItemSchema) => {
+        const lot = (type: 'bid' | 'ask', count: number, price: number) => (type === 'bid' ? 'Покупка' : 'Продажа') + ` ${count} шт. за ${price}`
+        const DOM = depthOfMarket(listing, 3)
+        return (((Object.keys(DOM.buy)).map(x => lot('bid', DOM.buy[x], parseFloat(x))).join("\n") || "Нет лотов на покупку\n") + "\n" +
+            ((Object.keys(DOM.sell)).map(x => lot('ask', DOM.sell[x], parseFloat(x))).join("\n")) || "Нет лотов на продажу")
+
+    },
+    STOCKS_TOOLTIP: 'Чтобы купить предмет, используйте /buy. Чтобы продать - /sell. Через пробел укажите параметры: название, кол-во, цена (опционально). Например, ' +
+        '/buy гипертопливо 5 15.13. Если не указать цену, сделка пройдет по рыночной цене. Чтобы посмотреть стакан цен, используйте /list {название}.',
+    MORE_THAN_ZERO: 'Укажите количество больше нуля',
+    NOT_ENOUGH_ITEMS: 'Недостаточно предметов.',
+    ITEM_SELL_SUCCESS: (count: number, summary: number, item: ResourceEnum) => `Предмет ${ResourcesConstant[item].name} ` +
+    `продан. Кол-во: ${count}. Зачисление на баланс: +${summary}`,
+    ITEM_SELL_LOT_PLACED: (count: number, price: number, item: ResourceEnum) => `Продажа ${count} ${ResourcesConstant[item].name} по цене ${price}. ` +
+        `Лот выставлен на биржу. После сделки вам придет уведомление.`,
+    ITEM_SELL_MARKET_PRICE_NO_LOTS: `Сейчас этот предмет никто не покупает. Вы можете дополнительно указать цену, тогда вы разместите лот и другие участники ` +
+        `смогут купить его у вас позже.`,
+    ITEM_SELL_PARTIAL_SUCCESS_AND_LOT_PLACED: (countSold: number, countPlaced: number, summary: number, price: number, item: ResourceEnum) => `Частичная продажа. ` +
+    `Часть покупателей была готова заплатить за ${ResourcesConstant[item].name} цену выше, чем предложили вы. Сейчас вы продали ${countSold} и получили ${summary}. ` +
+        `Еще ${countPlaced} были размещены на бирже по цене ${price}`,
+    ITEM_BUY_SUCCESS: (count: number, summary: number, item: ResourceEnum) => `Предмет ${ResourcesConstant[item].name} ` +
+        `куплен. Кол-во: ${count}. Списание с баланса: -${summary}`,
+    ITEM_BUY_LOT_PLACED: (count: number, price: number, item: ResourceEnum) => `Покупка ${count} ${ResourcesConstant[item].name} по цене ${price}. ` +
+        `Лот выставлен на биржу. После сделки вам придет уведомление.`,
+    ITEM_BUY_MARKET_PRICE_NO_LOTS: `Сейчас этот предмет никто не продает. Вы можете дополнительно указать цену, тогда вы разместите лот и другие участники ` +
+        `смогут продать его вам позже.`,
+    ITEM_BUY_PARTIAL_SUCCESS_AND_LOT_PLACED: (countSold: number, countPlaced: number, summary: number, price: number, item: ResourceEnum) => `Частичная покупка. ` +
+        `Часть продавцов была готова продать ${ResourcesConstant[item].name} по цене ниже, чем предложили вы. Сейчас вы купили ${countSold} и потратили ${summary}. ` +
+        `Запрос на еще ${countPlaced} был размещен на бирже по цене ${price}`,
+    CONTRAGENT_BUY: (count: number, price: number, item: ResourceEnum) => `Сделка по вашему ` +
+    `лоту на бирже: куплено ${count} ${ResourcesConstant[item].name} по цене ${price}`,
+    CONTRAGENT_SELL: (count: number, price: number, item: ResourceEnum) =>` Сделка по вашему ` +
+        `лоту на бирже: продано ${count} ${ResourcesConstant[item].name} по цене ${price}`,
 } as const satisfies MessagesSchema
 
 export default MessagesRU

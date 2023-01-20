@@ -11,7 +11,10 @@ bot.setMyCommands([
     {command: '/first_steps', description: 'Первые шаги'},
     {command: '/first_steps_galaxy', description: 'Первые шаги: устройство галактики'},
     {command: '/travel', description: 'Перелет'},
-    {command: '/change_name', description: 'Переименовать компанию'}
+    {command: '/change_name', description: 'Переименовать компанию'},
+    {command: '/list', description: 'Список лотов'},
+    {command: '/sell', description: 'Продать предмет'},
+    {command: '/buy', description: 'Купить предмет'}
 ])
 
 addListeners(bot)

@@ -406,6 +406,11 @@ const ResourcesConstant: ResourcesSchema = {
         name: 'шар гравитино',
         size: 'l',
         description: 'шар, искажающий гравитационное поле'
+    },
+    MONEY: {
+        name: 'деньга',
+        size: 's',
+        description: 'служебное'
     }
 }
 

@@ -8,6 +8,7 @@ import onTravelCommandEmptyMessageListener from "./commands/onTravelCommandEmpty
 import onSystemInfoListener from "./messages/onSystemInfo.listener";
 import changeNameEmptyListener from "./messages/changeNameEmpty.listener";
 import onSelfColoniesInfoListener from "./messages/onSelfColoniesInfo.listener";
+import onStockMessageListener from "./messages/onStockMessage.listener";
 
 const onMessageListener = (bot: TelegramBot) => {
     bot.on('message', (message) => {
@@ -21,6 +22,7 @@ const onMessageListener = (bot: TelegramBot) => {
             case 'Система': return onSystemInfoListener(bot, message)
             case '/change_name': return changeNameEmptyListener(bot, message)
             case 'Колонии': return onSelfColoniesInfoListener(bot, message)
+            case 'Биржа': return onStockMessageListener(bot, message)
         }
     })
 }
