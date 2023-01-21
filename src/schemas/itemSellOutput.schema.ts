@@ -24,6 +24,12 @@ interface partialSell {
     price: number
 }
 
-type ItemSellOutputSchema = sellSuccess | lotPlaced | noLots | partialSell | undefined
+interface partialMarket {
+    message: MessagesEnum.PARTIAL_SELL_MARKET,
+    count: number,
+    summary: number
+}
+
+type ItemSellOutputSchema = sellSuccess | lotPlaced | noLots | partialSell | partialMarket | undefined
 
 export default ItemSellOutputSchema

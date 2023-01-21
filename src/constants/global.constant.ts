@@ -7,7 +7,8 @@ const globalConstant = {
         m: 5,
         l: 10,
         xl: 50
-    }
+    },
+    stocksFee: 0.003
 }
 
 export default globalConstant

@@ -185,12 +185,18 @@ const MessagesRU = {
     ITEM_LISTING: (listing: marketItemSchema) => {
         const lot = (type: 'bid' | 'ask', count: number, price: number) => (type === 'bid' ? 'Покупка' : 'Продажа') + ` ${count} шт. за ${price}`
         const DOM = depthOfMarket(listing, 3)
-        return (((Object.keys(DOM.buy)).map(x => lot('bid', DOM.buy[x], parseFloat(x))).join("\n") || "Нет лотов на покупку\n") + "\n" +
-            ((Object.keys(DOM.sell)).map(x => lot('ask', DOM.sell[x], parseFloat(x))).join("\n")) || "Нет лотов на продажу")
+        return (DOM.buy.map(x => lot('bid', x.count, x.price)).join("\n") || "Нет лотов на покупку\n") + "\n" +
+            (DOM.sell.map(x => lot('ask', x.count, x.price)).join("\n") || "Нет лотов на продажу")
 
     },
-    STOCKS_TOOLTIP: 'Чтобы купить предмет, используйте /buy. Чтобы продать - /sell. Через пробел укажите параметры: название, кол-во, цена (опционально). Например, ' +
-        '/buy гипертопливо 5 15.13. Если не указать цену, сделка пройдет по рыночной цене. Чтобы посмотреть стакан цен, используйте /list {название}.',
+    STOCKS_TOOLTIP: `Чтобы подключиться к бирже используйте команды: \n` +
+        `Продать: /sell {название предмета} {количество} {(опционально) цена за шт.} \n` +
+        `Купить: /buy {название предмета} {количество} {(опционально) цена за шт.} \n` +
+        `Если не указывать цену, сделка пройдет по рыночной цене. \n` +
+        `Чтобы посмотреть лучшие предложения, используйте /list {название предмета}.\n` +
+        `Услуги биржи доступны только в подконтрольных правительству системах. \n` +
+        `Комиссия биржи составляет ${globalConstant.stocksFee * 100}%`
+    ,
     MORE_THAN_ZERO: 'Укажите количество больше нуля',
     NOT_ENOUGH_ITEMS: 'Недостаточно предметов.',
     ITEM_SELL_SUCCESS: (count: number, summary: number, item: ResourceEnum) => `Предмет ${ResourcesConstant[item].name} ` +
@@ -215,6 +221,12 @@ const MessagesRU = {
     `лоту на бирже: куплено ${count} ${ResourcesConstant[item].name} по цене ${price}`,
     CONTRAGENT_SELL: (count: number, price: number, item: ResourceEnum) =>` Сделка по вашему ` +
         `лоту на бирже: продано ${count} ${ResourcesConstant[item].name} по цене ${price}`,
+    LOT_REMOVED_NOT_ENOUGH_MONEY: (item: ResourceEnum) => `Лот на покупку ${ResourcesConstant[item].name} снят: недостаточно средств.`,
+    PARTIAL_BUY_MARKET: (count: number, summary: number, itemName: ResourceEnum) => `Частичная покупка: средств на балансе хватило на покупку ${count} ` +
+        `${ResourcesConstant[itemName].name}. Списано со счета: ${summary}`,
+    PARTIAL_SELL_MARKET: (count: number, summary: number, itemName: ResourceEnum) => `Частичная продажа: на бирже было ${count} подходящих запросов на покупку ` +
+        `${ResourcesConstant[itemName].name}. Зачислено на счет: ${summary}`,
+    STOCK_AVAILABLE_ONLY_GOV: 'Услуги биржи доступны только в подконтрольных правительству системах.',
 } as const satisfies MessagesSchema
 
 export default MessagesRU

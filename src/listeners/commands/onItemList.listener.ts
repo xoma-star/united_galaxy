@@ -9,7 +9,7 @@ import getItemListing from "../../pocketbase/getItemListing";
 const onItemListListener = async (bot: TelegramBot, msg: Message, regex: RegExpExecArray | null) => {
     try {
         if(!regex) return await bot.sendMessage(msg.from?.id || -1, MESSAGES.RU.ERROR_UNKNOWN)
-        const bestMessage = stringSimilarity.findBestMatch(regex[1]?.toLowerCase() || '',
+        const bestMessage = stringSimilarity.findBestMatch(regex[1] || '',
             (Object.keys(ResourcesConstant) as ResourceEnum[]).map(x => ResourcesConstant[x].name)
         )
         const itemName = (Object.keys(ResourcesConstant) as ResourceEnum[]).find(x => ResourcesConstant[x].name === bestMessage.bestMatch.target)

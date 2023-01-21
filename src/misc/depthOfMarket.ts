@@ -2,24 +2,27 @@ import marketItemSchema from "../schemas/marketItem.schema";
 import DepthOfMarketSchema from "../schemas/depthOfMarket.schema";
 
 const depthOfMarket = (listing: marketItemSchema, depth: number): DepthOfMarketSchema => {
-    const buySorted = listing.buy.sort((a, b) => a.price < b.price ? -1 : 1)
-    const sellSorted = listing.sell.sort((a, b) => a.price > b.price ? -1 : 1)
-    let buy: {[K: string]: number} = {}
-    let sell: {[K: string]: number} = {}
-    while(Object.keys(buy).length < depth) {
+    const buySorted = listing.buy
+    const sellSorted = listing.sell
+    let buy: { price: number, count: number }[] = []
+    let sell: { price: number, count: number }[] = []
+    while(buySorted.length > 0) {
         const val = buySorted.pop()
         if(!val) break
-        buy[val.price.toString()] = (buy[val.price.toString()] || 0) + val.count
+        const idx = buy.findIndex(x => x.price === val.price)
+        if(idx > -1) buy[idx] = {price: buy[idx].price, count: buy[idx].count + val.count}
+        else buy.push({price: val.price, count: val.count})
     }
-    while(Object.keys(sell).length < depth) {
+    while(sellSorted.length > 0) {
         const val = sellSorted.pop()
         if(!val) break
-        sell[val.price.toString()] = (sell[val.price.toString()] || 0) + val.count
+        const idx = sell.findIndex(x => x.price === val.price)
+        if(idx > -1) sell[idx] = {price: sell[idx].price, count: sell[idx].count + val.count}
+        else sell.push({price: val.price, count: val.count})
     }
-    console.log(buy, sell)
     return {
-        buy,
-        sell
+        buy: buy.sort((a, b) => a.price > b.price ? -1 : 1).slice(0, depth),
+        sell: sell.sort((a, b) => a.price < b.price ? -1 : 1).slice(0, depth)
     }
 }
 

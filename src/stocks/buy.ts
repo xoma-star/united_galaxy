@@ -19,7 +19,7 @@ const buyItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count: 
         const userData = await getUserData(id)
         const sellSorted = listing.sell
             .filter(x => x.seller !== id)
-            .filter(x => x.price >= (price || Infinity))
+            .filter(x => x.price <= (price || Infinity))
             .sort((a, b) => a.price > b.price ? -1 : 1)
 
         while(sellSorted.length > 0 && count > 0 && userData.balance > 0){
@@ -52,6 +52,9 @@ const buyItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count: 
             if(lot.count === 0){
                 await removeListing(lot.id as string)
             }
+            else if(userData.balance < lot.price || userData.balance < (price || 0)) {
+
+            }
             else{
                 sellSorted.push(lot)
             }
@@ -75,6 +78,15 @@ const buyItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count: 
                     countBought: countSold,
                     price: price,
                     countPlaced: count
+                }
+            }
+        }
+        else{
+            if(countSold > 0) {
+                return {
+                    message: MessagesEnum.PARTIAL_BUY_MARKET,
+                    summary: summary,
+                    count: countSold
                 }
             }
         }

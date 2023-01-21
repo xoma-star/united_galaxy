@@ -7,16 +7,25 @@ import ResourceEnum from "../../enums/resource.enum";
 import getUserData from "../../pocketbase/getUserData";
 import sellItem from "../../stocks/sell";
 import MessagesEnum from "../../enums/messages.enum";
+import systemGenerator from "../../generators/system.generator";
+import SystemControlledByEnum from "../../enums/systemControlledBy.enum";
 
 
 const onSellListener = async (bot: TelegramBot, msg: Message, regex: RegExpExecArray | null) => {
     try {
         if(!regex) return await bot.sendMessage(msg.from?.id || -1, MESSAGES.RU.ERROR_UNKNOWN)
-        let [item, countS, price] = regex[1].split(' ')
+        const split = regex[1].split(' ')
+        const numbersLength = split.filter(x => !isNaN(parseFloat(x))).length
+        let price = undefined, countS, item
+        if(numbersLength === 2) {
+            price = split.pop()
+        }
+        countS = split.pop()
+        item = split.join(' ')
         if(typeof item === 'undefined' || typeof countS === 'undefined') return await bot
             .sendMessage(msg.from?.id || -1, MESSAGES.RU.STOCKS_TOOLTIP, {reply_markup: {inline_keyboard: KEYBOARDS.STOCKS_TOOLTIP}})
         let count = parseInt(countS)
-        const bestMessage = stringSimilarity.findBestMatch(item.toLowerCase() || '',
+        const bestMessage = stringSimilarity.findBestMatch(item || '',
             (Object.keys(ResourcesConstant) as ResourceEnum[]).map(x => ResourcesConstant[x].name)
         )
         const itemName = (Object.keys(ResourcesConstant) as ResourceEnum[]).find(x => ResourcesConstant[x].name === bestMessage.bestMatch.target)
@@ -33,6 +42,9 @@ const onSellListener = async (bot: TelegramBot, msg: Message, regex: RegExpExecA
             {reply_markup: {inline_keyboard: KEYBOARDS.SELL_TOOLTIP(itemName)}}
         )
         const userData = await getUserData(msg.from?.id || -1)
+        const system = systemGenerator(userData.coordinates)
+        if(system.controlledBy !== SystemControlledByEnum.GOVERNMENT) return await bot
+            .sendMessage(msg.from?.id || -1, MESSAGES.RU.STOCK_AVAILABLE_ONLY_GOV)
         const willLeft = (userData.items[itemName] || 0) - count
         if(willLeft < 0) return await bot.sendMessage(
             msg.from?.id || -1,
@@ -54,6 +66,8 @@ const onSellListener = async (bot: TelegramBot, msg: Message, regex: RegExpExecA
                 .sendMessage(msg.from?.id || -1, MESSAGES.RU.ITEM_SELL_PARTIAL_SUCCESS_AND_LOT_PLACED(
                     response.countSold, response.countPlaced, response.summary, response.price, itemName
                 ))
+            case MessagesEnum.PARTIAL_SELL_MARKET: return await bot
+                .sendMessage(msg.from?.id || -1, MESSAGES.RU.PARTIAL_SELL_MARKET(response.count, response.summary, itemName))
         }
     }
     catch (e) {

@@ -18,12 +18,13 @@ const sellItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count:
         const userData = await getUserData(id)
         const buySorted = listing.buy
             .filter(x => x.seller !== id)
-            .filter(x => x.price <= (price || Infinity))
+            .filter(x => x.price >= (price || 0))
             .sort((a, b) => a.price < b.price ? -1 : 1)
         while(buySorted.length > 0 && count > 0 && (userData.items[item] || 0) > 0){
             const lot = buySorted.pop()
             if(typeof lot === 'undefined') break
-            const delta = Math.min(lot.count, count, (userData.items[item] || 0))
+            const contragentData = await getUserData(lot.seller)
+            const delta = Math.min(lot.count, count, (userData.items[item] || 0), Math.floor(contragentData.balance / lot.price))
             lot.count = lot.count - delta
             count = count - delta
             totalSpending.push({count: delta, price: lot.price})
@@ -37,7 +38,6 @@ const sellItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count:
                     MONEY: delta * lot.price
                 }
             })
-            const contragentData = await getUserData(lot.seller)
             contragentData.balance -= delta * lot.price
             contragentData.items = {
                 ...contragentData.items,
@@ -49,6 +49,10 @@ const sellItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count:
             (userData.items as any)[item] -= delta
             if(lot.count === 0){
                 await removeListing(lot.id as string)
+            }
+            else if(contragentData.balance < lot.price) {
+                await removeListing(lot.id as string)
+                await bot.sendMessage(contragentData.tg_id, MESSAGES.RU.LOT_REMOVED_NOT_ENOUGH_MONEY(item))
             }
             else{
                 buySorted.push(lot)
@@ -73,6 +77,15 @@ const sellItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count:
                     countSold: countSold,
                     price: price,
                     countPlaced: count
+                }
+            }
+        }
+        else{
+            if(countSold > 0) {
+                return {
+                    message: MessagesEnum.PARTIAL_SELL_MARKET,
+                    summary: summary,
+                    count: countSold
                 }
             }
         }
