@@ -13,34 +13,9 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             WIRING: 10,
             CONCRETE: 100
         },
-        canProduce: {
-            OIL: {
-                perHour: 50,
-                requirements: {
-                    CARBON: 1,
-                    HYDROGEN: 4
-                }
-            },
-            WATER: {
-                perHour: 50,
-                requirements: {
-                    HYDROGEN: 2,
-                    OXYGEN: 1
-                }
-            },
-            DIAMOND: {
-                perHour: 5,
-                requirements: {
-                    CARBON: 50
-                }
-            },
-            STAINLESS_STEEL: {
-                perHour: 40,
-                requirements: {
-                    IRON: 1
-                }
-            }
-        }
+        canProduce: [
+            {product: {OIL: 1}, requirements: {CARBON: 4, HYDROGEN: 1, WORKER: 1}, productPerHour: 120}
+        ]
     },
     ORE_MINE: {
         name: 'рудник',
@@ -48,14 +23,10 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             FRAME: 20,
             SHEATHING: 5
         },
-        canProduce: {
-            STONE: {
-                perHour: 500
-            },
-            ALUMINIUM: {
-                perHour: 200
-            }
-        }
+        canProduce: [
+            {product: {ALUMINIUM: 1}, requirements: {WORKER: 0.1}, productPerHour: 200},
+            {product: {STONE: 1}, requirements: {WORKER: 0.1}, productPerHour: 800}
+        ]
     },
     LIVING_MODULE: {
         name: 'модуль жизнеобеспечения',
@@ -68,15 +39,9 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             WIRING: 5,
             CONCRETE: 150
         },
-        canProduce: {
-            LIFE: {
-                perHour: 100,
-                requirements: {
-                    WATER: 20,
-                    OXYGEN: 10
-                }
-            }
-        }
+        canProduce: [
+            {product: {LIFE: 1}, requirements: {WATER: 1, OXYGEN: 1, FOOD: 1}, productPerHour: 50}
+        ]
     },
     WORKERS_MODULE: {
         name: 'жилой модуль',
@@ -85,16 +50,12 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             COMPOSITE_FRAME: 25,
             ALUMINIUM: 500,
             PLASTIC: 250,
-            CONCRETE: 300
+            CONCRETE: 300,
+            GLASS_PANEL: 5
         },
-        canProduce: {
-            WORKER: {
-                perHour: 50,
-                requirements: {
-                    LIFE: 50
-                }
-            }
-        }
+        canProduce: [
+            {product: {WORKER: 1}, requirements: {LIFE: 1}, productPerHour: 50}
+        ]
     },
     STORAGE: {
         name: 'хранилище',
@@ -103,20 +64,13 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             COMPOSITE_FRAME: 50,
             COMPOSITE_SHEATHING: 100,
             ALUMINIUM: 100
-        },
-        canProduce: {}
+        }
     },
     FARM_MODULE: {
         name: 'ферма',
-        canProduce: {
-            FOOD: {
-                perHour: 120,
-                requirements: {
-                    WATER: 40,
-                    WORKER: 40
-                }
-            }
-        },
+        canProduce: [
+            {product: {OXYGEN: 1, FOOD: 2, SEEDS: 1}, requirements: {WORKER: 1, SEEDS: 1, WATER: 2}, productPerHour: 50}
+        ],
         buildResources: {
             CONCRETE: 50,
             COMPOSITE_SHEATHING: 25,
@@ -126,16 +80,7 @@ const BuildingsConstant: BuildingGeneratorSchema = {
     },
     ASSEMBLY_MODULE: {
         name: 'сборочный модуль',
-        canProduce: {
-            INTERSTELLAR_SCANNER: {
-                perHour: 3,
-                requirements: {
-                    CIRCUIT: 1,
-                    RADIO_EMITTER: 4,
-                    RADIO_CONSUMER: 1
-                }
-            }
-        },
+        canProduce: [],
         buildResources: {
             CONCRETE: 100,
             COMPOSITE_SHEATHING: 50,
@@ -146,14 +91,9 @@ const BuildingsConstant: BuildingGeneratorSchema = {
     },
     ENERGY_MODULE: {
         name: 'энергомодуль',
-        canProduce: {
-            ENERGY: {
-                perHour: 540,
-                requirements: {
-                    URANIUM: 30
-                }
-            }
-        },
+        canProduce: [
+            {product: {ENERGY: 1}, requirements: {WORKER: 1, URANIUM: 0.05}, productPerHour: 500}
+        ],
         buildResources: {
             CONCRETE: 200,
             WATER_TANK: 10,
@@ -166,7 +106,7 @@ const BuildingsConstant: BuildingGeneratorSchema = {
     },
     EXPEDITIONS_MODULE: {
         name: 'модуль экспедиций',
-        canProduce: {},
+        canProduce: [],
         buildResources: {}
     },
     MAINTAIN_MODULE: {
@@ -176,12 +116,10 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             COMPOSITE_FRAME: 10,
             CONCRETE: 50,
             MACHINE: 1
-        },
-        canProduce: {}
+        }
     },
     TELEPORT_MODULE: {
         name: 'модуль телепортации предметов',
-        canProduce: {},
         buildResources: {
             CONCRETE: 75,
             COMPOSITE_FRAME: 10,
@@ -200,8 +138,7 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             RADIO_EMITTER: 3,
             RADIO_CONSUMER: 3,
             WIRING: 10
-        },
-        canProduce: {}
+        }
     },
     THERMOREGULATION_MODULE: {
         name: 'модуль терморегуляции',
@@ -211,12 +148,10 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             COMPOSITE_FRAME: 2,
             COMPUTER: 1,
             ALUMINIUM: 20
-        },
-        canProduce: {}
+        }
     },
     CENTRAL_MODULE: {
         name: 'центральный модуль',
-        canProduce: {},
         buildResources: {
             COMPUTER: 5,
             CONCRETE: 50,
@@ -235,8 +170,7 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             WIRING: 5,
             RADIO_CONSUMER: 5,
             RADIO_EMITTER: 5
-        },
-        canProduce: {}
+        }
     },
     RADIATION_CLEANER_MODULE: {
         name: 'модуль очистки от радиации',
@@ -246,12 +180,10 @@ const BuildingsConstant: BuildingGeneratorSchema = {
             CONCRETE: 10,
             LEAD: 50,
             WATER_TANK: 3
-        },
-        canProduce: {}
+        }
     },
     TOXICITY_CLEANER_MODULE: {
-        name: 'модуль очистки от токсинов',
-        canProduce: {},
+        name: 'модуль фильтрации токсинов',
         buildResources: {
             COMPOSITE_SHEATHING: 5,
             COMPOSITE_FRAME: 2,
@@ -264,12 +196,13 @@ const BuildingsConstant: BuildingGeneratorSchema = {
         buildResources: {
             EMPTY_TANK: 10,
             COMPOSITE_FRAME: 5
-        },
-        canProduce: {}
+        }
     },
     WATER_CLEANING_MODULE: {
         name: 'модуль очистки воды',
-        canProduce: {},
+        canProduce: [
+            {product: {WATER: 1}, requirements: {WORKER: 0.1}, productPerHour: 50}
+        ],
         buildResources: {
             WATER_TANK: 5,
             COMPOSITE_FRAME: 5,
@@ -284,8 +217,7 @@ const BuildingsConstant: BuildingGeneratorSchema = {
         buildResources: {
             COMPOSITE_FRAME: 20,
             GRAVITINO_BALL: 5
-        },
-        canProduce: {}
+        }
     }
 }
 

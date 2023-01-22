@@ -11,7 +11,8 @@ interface starshipInventory{
         CallbackQueryCommandsEnum.STARSHIP_INSTALL_TECHNOLOGIES |
         CallbackQueryCommandsEnum.CHANGE_COMPANY_NAME |
         CallbackQueryCommandsEnum.FOUND_COLONY |
-        CallbackQueryCommandsEnum.LIST_SELF_COLONIES
+        CallbackQueryCommandsEnum.LIST_SELF_COLONIES |
+        CallbackQueryCommandsEnum.ACTIVE_LOTS
 }
 
 interface foundColonyHere{
@@ -23,7 +24,8 @@ interface foundColonyHere{
 interface colonyManage {
     command: CallbackQueryCommandsEnum.MANAGE_COLONY |
         CallbackQueryCommandsEnum.COLONY_COLLECT_ALL |
-        CallbackQueryCommandsEnum.MANAGE_COLONY_MODULES
+        CallbackQueryCommandsEnum.MANAGE_COLONY_MODULES |
+        CallbackQueryCommandsEnum.REMOVE_LOT
     ,
     id: string
 }

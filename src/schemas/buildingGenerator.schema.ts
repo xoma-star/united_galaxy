@@ -7,14 +7,11 @@ type BuildingGeneratorSchema = {
         buildResources: {
             [K in keyof typeof ResourceEnum]?: number
         },
-        canProduce: {
-            [K in keyof typeof ResourceEnum]?: {
-                perHour: number,
-                requirements?: {
-                    [K in keyof typeof ResourceEnum]?: number
-                }
-            }
-        }
+        canProduce?: {
+            requirements: {[K in keyof typeof ResourceEnum]?: number},
+            product: {[K in keyof typeof ResourceEnum]?: number},
+            productPerHour: number
+        }[]
     }
 }
 

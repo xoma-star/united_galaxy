@@ -5,7 +5,11 @@ type ResourcesSchema = {
         name: string,
         starShipConsumable?: boolean,
         description: string,
-        size: 's' | 'm' | 'l' | 'xl'
+        size: 's' | 'm' | 'l' | 'xl',
+        craft?: {
+            [K in keyof typeof ResourceEnum]?: number
+        },
+        craftModuleRequired?: ResourceEnum[]
     }
 }
 

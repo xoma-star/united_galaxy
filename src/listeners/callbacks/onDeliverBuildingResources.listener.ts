@@ -26,9 +26,17 @@ const onDeliverBuildingResourcesListener = async (bot: TelegramBot, query: Callb
         let resourcesRequired = colonyData.modules[buildingIndex].resourcesRequired;
         for(const x of (Object.keys(resourcesRequired) as ResourceEnum[])){
             const spending = Math.min(resourcesRequired[x] || 0, userData.items[x] || 0);
-            (resourcesRequired as any)[x] -= spending;
-            if(typeof userData.items[x] !== 'undefined') (userData.items[x] as any)[x] -= spending
+            if(typeof userData.items[x] !== 'undefined'){
+                (userData.items as any)[x] -= spending;
+                (resourcesRequired as any)[x] -= spending
+            }
             await bot.sendMessage(query.from.id, MESSAGES.RU.COLONY_BUILDING_DELIVERED_LEFT(x, (resourcesRequired[x] || 0)))
+        }
+        colonyData.modules[buildingIndex].resourcesRequired = resourcesRequired
+        if((Object.keys(resourcesRequired) as ResourceEnum[]).every(x => resourcesRequired[x] === 0)) {
+            colonyData.modules[buildingIndex].completed = true
+            await bot
+                .sendMessage(query.from.id, MESSAGES.RU.COLONY_BUILDING_DONE)
         }
         await updateUserData(userData)
         await updateColonyData(colonyData)

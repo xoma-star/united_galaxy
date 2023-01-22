@@ -1,4 +1,5 @@
 import ResourcesSchema from "../schemas/resources.schema";
+import resourceEnum from "../enums/resource.enum";
 
 const ResourcesConstant: ResourcesSchema = {
     AMMONIA: {
@@ -119,17 +120,29 @@ const ResourcesConstant: ResourcesSchema = {
     CONDENSED_CARBON: {
         name: 'сжатый углерод',
         description: 'углерод, у которого снижено расстояние между атомами',
-        size: 'm'
+        size: 'm',
+        craft: {
+            CARBON: 2
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     CONDENSED_OXYGEN: {
         name: 'сжатый кислород',
         description: 'кислород, у которого снижено расстояние между атомами',
-        size: 'm'
+        size: 'm',
+        craft: {
+            OXYGEN: 2
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     DIAMOND: {
         name: 'алмаз',
         description: 'сверхпрочный минерал, образованный из углерода',
-        size: 's'
+        size: 's',
+        craft: {
+            CARBON: 50,
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     IRON_DUST: {
         name: 'железная пыль',
@@ -197,9 +210,14 @@ const ResourcesConstant: ResourcesSchema = {
         size: 'm'
     },
     OIL: {
-        name: 'нефть',
-        description: 'нефть',
-        size: 'm'
+        name: 'углеводороды',
+        description: 'углеводороды',
+        size: 'm',
+        craft: {
+            CARBON: 4,
+            HYDROGEN: 1
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     GLASS_WOOL: {
         name: 'стекловата',
@@ -207,14 +225,23 @@ const ResourcesConstant: ResourcesSchema = {
         size: 'm'
     },
     PLASTIC: {
-        name: 'пластик',
-        description: 'получается из нефти',
-        size: 'l'
+        name: 'полимеры',
+        description: 'получается из углеводородов',
+        size: 'l',
+        craft: {
+            OIL: 5
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     STAINLESS_STEEL: {
         name: 'закаленная сталь',
         description: 'закаленная сталь',
-        size: 'm'
+        size: 'm',
+        craft: {
+            IRON: 3,
+            CARBON: 2
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     TITANIUM: {
         name: 'титан',
@@ -245,7 +272,11 @@ const ResourcesConstant: ResourcesSchema = {
     CIRCUIT: {
         name: 'электросхема',
         description: 'распечатанная плата, позволяющая управлять электроникой',
-        size: 's'
+        size: 's',
+        craft: {
+            COPPER: 5,
+            ALUMINIUM: 40
+        }
     },
     ENERGY: {
         name: 'энергия',
@@ -255,12 +286,22 @@ const ResourcesConstant: ResourcesSchema = {
     RADIO_CONSUMER: {
         name: 'приемник радиоволн',
         description: 'принимает радиоволны. эффективен в космосе',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ALUMINIUM: 20,
+            ANTENNA: 1,
+            CIRCUIT: 2
+        }
     },
     RADIO_EMITTER: {
         name: 'излучатель радиоволн',
         description: 'излучает радиоволны. эффективен в космосе',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ALUMINIUM: 20,
+            ANTENNA: 1,
+            CIRCUIT: 2
+        }
     },
     MAINTAIN: {
         name: 'MAINTAIN',
@@ -270,37 +311,76 @@ const ResourcesConstant: ResourcesSchema = {
     HYPER_FUEL: {
         name: 'гипертопливо',
         description: 'нужно для заправки варп-двигателя',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ANTIMATTER: 5,
+            TRITIUM: 50,
+            HYDROGEN: 20,
+            EMPTY_TANK: 1
+        }
     },
     WARP_DRIVE: {
         name: 'варп-двигатель',
         description: 'нужен для перемещения между системами',
         starShipConsumable: true,
-        size: 'xl'
+        size: 'xl',
+        craft: {
+            BEACON: 1,
+            QUANTUM_COMPUTER: 1,
+            TITANIUM: 100,
+            COPPER: 20,
+            PLASTIC: 10,
+            RADON: 5,
+            ION_BATTERY: 30
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     COBALT_DRIVE: {
         name: 'кобальтовый привод',
         description: 'нужен для варпа в синие системы',
         starShipConsumable: true,
-        size: 'l'
+        size: 'l',
+        craft: {
+            WARP_DRIVE: 1,
+            COBALT: 500,
+            IRIDIUM: 200
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     CADMIUM_DRIVE: {
         name: 'кадмиевый привод',
         description: 'нужен для варпа в красные системы',
         starShipConsumable: true,
-        size: 'l'
+        size: 'l',
+        craft: {
+            WARP_DRIVE: 1,
+            CADMIUM: 500,
+            IRIDIUM: 200
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     INDIUM_DRIVE: {
         name: 'индиевый привод',
         description: 'нужен для варпа в зеленые системы',
         starShipConsumable: true,
-        size: 'l'
+        size: 'l',
+        craft: {
+            WARP_DRIVE: 1,
+            INDIUM: 500,
+            IRIDIUM: 200
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     PLANET_SCANNER: {
         name: 'планетарный сканер',
         description: 'нужен для получения информации о планетах',
         starShipConsumable: true,
-        size: 'l'
+        size: 'l',
+        craft: {
+            ADVANCED_CIRCUIT: 1,
+            RADIO_EMITTER: 1,
+            RADIO_CONSUMER: 1
+        }
     },
     IRIDIUM: {
         name: 'иридий',
@@ -310,7 +390,10 @@ const ResourcesConstant: ResourcesSchema = {
     INSULATION: {
         name: 'утеплитель',
         description: 'вспененный материал, который позволяет сохранять тепло',
-        size: 'l'
+        size: 'l',
+        craft: {
+            PLASTIC: 80
+        }
     },
     FUNGAL_MOULD: {
         name: 'грибковая плесень',
@@ -330,67 +413,122 @@ const ResourcesConstant: ResourcesSchema = {
     COMPOSITE_FRAME: {
         name: 'прочный каркас',
         size: 'l',
-        description: 'легкий и прочный каркас'
+        description: 'легкий и прочный каркас',
+        craft: {
+            FRAME: 10,
+            TITANIUM: 100
+        }
     },
     COMPOSITE_SHEATHING: {
         name: 'композитная обшивка',
         size: 'l',
-        description: 'устойчивая к внешним воздействиям обшивка. легко выдерживает самые тяжелые погодные условия'
+        description: 'устойчивая к внешним воздействиям обшивка. легко выдерживает самые тяжелые погодные условия',
+        craft: {
+            SHEATHING: 10,
+            INSULATION: 40,
+            TITANIUM: 80
+        }
     },
     EMPTY_TANK: {
         name: 'пустой бак',
         description: 'пустой бак',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ALUMINIUM: 50
+        }
     },
     FRAME: {
         name: 'простой каркас',
         description: 'простой каркас',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ALUMINIUM: 20,
+            TITANIUM: 10
+        }
     },
     OXYGEN_TANK: {
         name: 'кислородный бак',
         description: 'бак со сжиженным кислородом',
-        size: 'l'
+        size: 'l',
+        craft: {
+            EMPTY_TANK: 1,
+            CONDENSED_OXYGEN: 50
+        }
     },
     NUCLEAR_FUEL: {
         name: 'радиоактивное топливо',
         description: 'выделяет энергию за счет ядерного распада',
-        size: 'm'
+        size: 'm',
+        craft: {
+            URANIUM: 20,
+            TRITIUM: 40,
+            EMPTY_TANK: 1
+        }
     },
     SHEATHING: {
         name: 'простая обшивка',
         description: 'простая обшивка',
-        size: 'l'
+        size: 'l',
+        craft: {
+            ALUMINIUM: 40
+        }
     },
     WATER_TANK: {
         name: 'водяной бак',
         description: 'бак с водой',
-        size: 'l'
+        size: 'l',
+        craft: {
+            EMPTY_TANK: 1,
+            WATER: 40
+        }
     },
     ADVANCED_CIRCUIT: {
         name: 'продвинутая микросхема',
         size: 's',
-        description: 'используется в сложных механизмах'
+        description: 'используется в сложных механизмах',
+        craft: {
+            CIRCUIT: 5,
+            IRIDIUM: 50
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     COMPUTER: {
         name: 'ЭВМ',
         size: 'm',
-        description: 'нужна для рассчетов'
+        description: 'нужна для рассчетов',
+        craft: {
+            ADVANCED_CIRCUIT: 5,
+            ALUMINIUM: 20,
+            WIRING: 40
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
     },
     WIRING: {
         name: 'проводка',
         size: 'm',
-        description: 'передает сигналы или энергию'
+        description: 'передает сигналы или энергию',
+        craft: {
+            COPPER: 5,
+            PLASTIC: 5
+        }
     },
     CONCRETE: {
         name: 'бетонный раствор',
         size: 'l',
-        description: 'при затвердевании образует очень твердый материал'
+        description: 'при затвердевании образует очень твердый материал',
+        craft: {
+            WATER: 10,
+            STONE_DUST: 40
+        }
     },
     SOLAR_LAMP: {
         name: 'солнечная лампа',
         size: 'm',
-        description: 'излучает солнечный свет, необходимый для роста растений с Земли'
+        description: 'излучает солнечный свет, необходимый для роста растений с Земли',
+        craft: {
+            ALUMINIUM: 200,
+            LIQUID_SUN: 5
+        }
     },
     MACHINE: {
         name: 'станок',
@@ -411,6 +549,135 @@ const ResourcesConstant: ResourcesSchema = {
         name: 'деньга',
         size: 's',
         description: 'служебное'
+    },
+    DURABLE_GLASS: {
+        name: 'сверхпрочное стекло',
+        description: 'очень прочное',
+        size: 'm'
+    },
+    SEALANT: {
+        name: 'герметик',
+        description: 'герметизирует',
+        size: 's'
+    },
+    GLASS_PANEL: {
+        name: 'стеклянная панель',
+        size: 'm',
+        description: 'стеклянная панель'
+    },
+    ION_BATTERY: {
+        name: 'ионная батарея',
+        size: 's',
+        description: '',
+        craft: {
+            COBALT: 10,
+            STONE_DUST: 5
+        }
+    },
+    ANOMALY_DETECTOR: {
+        name: 'детектор аномалий',
+        size: 's',
+        description: '',
+        craft: {
+            EXTRACTED_DATA: 5,
+            RADIO_EMITTER: 1,
+            RADON: 10,
+            ADVANCED_CIRCUIT: 2
+        }
+    },
+    EXTRACTED_DATA: {
+        name: 'извлеченные данные',
+        size: 's',
+        description: ''
+    },
+    PORTABLE_REFINER: {
+        name: 'корабельный очиститель',
+        description: '',
+        size: 'xl',
+        starShipConsumable: true
+    },
+    METAL_PLATE: {
+        name: 'металлическая пластина',
+        size: 's',
+        description: ''
+    },
+    PORTABLE_MACHINE: {
+        name: 'корабельный станок',
+        description: '',
+        size: 'xl',
+        starShipConsumable: true
+    },
+    ANTENNA: {
+        name: 'антенна',
+        description: '',
+        size: 'm',
+        craft: {
+            COPPER: 5,
+            ALUMINIUM: 10,
+            PLASTIC: 5
+        }
+    },
+    BEACON: {
+        name: 'навигационный маяк',
+        size: 's',
+        description: '',
+        craft: {
+            EXTRACTED_DATA: 20,
+            ALUMINIUM: 100,
+            RADIO_EMITTER: 2,
+            RADIO_CONSUMER: 1,
+            QUARTZ: 5
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_MACHINE]
+    },
+    QUANTUM_COMPUTER: {
+        name: 'квантовый компьютер',
+        description: '',
+        size: 'm',
+        craft: {
+            SUPERCONDUCTOR_FIBER: 5,
+            COMPUTER: 5,
+            ADVANCED_CIRCUIT: 50
+        }
+    },
+    STAR_SILK: {
+        name: 'звездный шелк',
+        size: 's',
+        description: ''
+    },
+    SUPERCONDUCTOR: {
+        name: 'сверхпроводник',
+        size: 's',
+        description: '',
+        craft: {
+            ENRICHED_CARBON: 1,
+            SEMICONDUCTOR: 1
+        }
+    },
+    ENRICHED_CARBON: {
+        name: 'обогащенный углерод',
+        size: 's',
+        description: '',
+        craft: {
+            CONDENSED_CARBON: 50,
+            RADON: 250,
+            HELIUM: 150
+        },
+        craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
+    },
+    SUPERCONDUCTOR_FIBER: {
+        name: 'сверхпроводящее волокно',
+        size: 's',
+        description: '',
+        craft: {
+            STAR_SILK: 300,
+            SUPERCONDUCTOR: 1
+        }
+    },
+    SEMICONDUCTOR: {
+        name: 'полупроводник',
+        size: 's',
+        description: ''
     }
 }
 

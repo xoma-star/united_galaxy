@@ -227,6 +227,11 @@ const MessagesRU = {
     PARTIAL_SELL_MARKET: (count: number, summary: number, itemName: ResourceEnum) => `Частичная продажа: на бирже было ${count} подходящих запросов на покупку ` +
         `${ResourcesConstant[itemName].name}. Зачислено на счет: ${summary}`,
     STOCK_AVAILABLE_ONLY_GOV: 'Услуги биржи доступны только в подконтрольных правительству системах.',
+    LOT_MANAGE: (type: 'ask' | 'bid', count: number, price: number, item: ResourceEnum) => `${type === 'bid' ? 'Покупка' : 'Продажа'} ` +
+   `${count} ${ResourcesConstant[item].name} по цене ${price.toFixed(2)}`,
+    NO_ACTIVE_LOTS: 'Нет активных лотов.',
+    LOT_REMOVED: 'Лот снят.',
+    COLONY_BUILDING_DONE: 'Все ресурсы доставлены. Модуль готов к эксплуатации.'
 } as const satisfies MessagesSchema
 
 export default MessagesRU

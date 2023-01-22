@@ -14,6 +14,8 @@ import onSelfColoniesListListener from "./callbacks/onSelfColoniesList.listener"
 import onColonyManageCallbackListener from "./callbacks/onColonyManageCallback.listener";
 import onManageBuildingsListener from "./callbacks/onManageBuildings.listener";
 import onDeliverBuildingResourcesListener from "./callbacks/onDeliverBuildingResources.listener";
+import onActiveLotsCallbackListener from "./callbacks/onActiveLotsCallback.listener";
+import onRemoveLotCallbackListener from "./callbacks/onRemoveLotCallback.listener";
 
 const onCallbackListener = (bot: TelegramBot) => {
     bot.on('callback_query', async (msg: CallbackQuery) => {
@@ -34,6 +36,8 @@ const onCallbackListener = (bot: TelegramBot) => {
             case CallbackQueryCommandsEnum.MANAGE_COLONY: return onColonyManageCallbackListener(bot, msg, query.id)
             case CallbackQueryCommandsEnum.MANAGE_COLONY_MODULES: return onManageBuildingsListener(bot, msg, query.id)
             case CallbackQueryCommandsEnum.DELIVER_CONSTRUCTION_RESOURCES: return onDeliverBuildingResourcesListener(bot, msg, query.c, query.m)
+            case CallbackQueryCommandsEnum.ACTIVE_LOTS: return onActiveLotsCallbackListener(bot, msg)
+            case CallbackQueryCommandsEnum.REMOVE_LOT: return onRemoveLotCallbackListener(bot, msg, query.id)
         }
     })
 }
