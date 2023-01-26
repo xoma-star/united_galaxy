@@ -5,117 +5,140 @@ const ResourcesConstant: ResourcesSchema = {
     AMMONIA: {
         name: 'аммиак',
         description: 'бесцветный газ с резким характерным запахом',
-        size: "m"
+        size: "m",
+        baseExtraction: 120
     },
     STONE: {
         name: 'камень',
         description: 'каменная порода. преобладает в составе большинства планет',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 200
     },
     WATER: {
         name: 'вода',
         description: 'жидкость, необходимая для поддержания жизни в колониях',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 240
     },
     HELIUM: {
         name: 'гелий',
         description: 'бесцветный газ',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 500
     },
     NITROGEN: {
         name: 'азот',
         description: 'бесцветный газ',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 400
     },
     SODIUM: {
         name: 'натрий',
         description: 'мягкий металл',
-        size: 's'
+        size: 's',
+        baseExtraction: 40
     },
     HYDROGEN: {
         name: 'водород',
         description: 'самый распространенный элемент во вселенной',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 600
     },
     BASALT: {
         name: 'базальт',
         description: 'вулканическая горная порода',
-        size: 'l'
+        size: 'l',
+        baseExtraction: 200
     },
     GOLD: {
         name: 'золото',
         description: 'драгоценный металл',
-        size: 's'
+        size: 's',
+        baseExtraction: 20
     },
     CHLORINE: {
         name: 'хлор',
         description: 'ядовитый газ',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 80
     },
     CADMIUM: {
         name: 'кадмий',
         description: 'мягкий ковкий тягучий металл серебристо-белого цвета',
-        size: 's'
+        size: 's',
+        baseExtraction: 15
     },
     LIQUID_SUN: {
         name: 'жидкая звезда',
         description: 'частичка звезды. может производить много энергии',
-        size: 's'
+        size: 's',
+        baseExtraction: 2
     },
     URANIUM: {
         name: 'уран',
         description: 'радиоактивный металл',
-        size: 's'
+        size: 's',
+        baseExtraction: 40
     },
     INDIUM: {
         name: 'индий',
         description: 'очень мягкий металл серебристо-белого цвета',
-        size: 's'
+        size: 's',
+        baseExtraction: 15
     },
     FROST_CRYSTAL: {
         name: 'морозный кристал',
         description: 'кристалл, образованный в естественной среде при низких температурах',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 10
     },
     COPPER: {
         name: 'медь',
         description: 'мягкий, ковкий и пластичный металл с очень высокой тепло- и электропроводностью',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 90
     },
     DEUTERIUM: {
         name: 'дейтерий',
         description: 'стабильный изотоп водорода с атомной массой, равной 2',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 120
     },
     IRON: {
         name: 'железо',
         description: 'ковкий переходный металл серебристо-белого цвета с высокой химической реакционной способностью',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 120
     },
     STONE_DUST: {
         name: 'каменная пыль',
         description: 'каменная пыль',
-        size: 'xl'
+        size: 's',
+        baseExtraction: 800
     },
     OXYGEN: {
         name: 'кислород',
         description: 'при нормальных условиях — газ без цвета, вкуса и запаха',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 400
     },
     CARBON: {
         name: 'углерод',
         description: 'основа органической жизни',
-        size: 'l'
+        size: 'l',
+        baseExtraction: 400
     },
     ASH: {
         name: 'пепел',
         description: 'результат сгорания',
-        size: 'l'
+        size: 'l',
+        baseExtraction: 120
     },
     COBALT: {
         name: 'кобальт',
         description: 'серебристо-белый, слегка желтоватый переходный металл с розоватым или синеватым отливом',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 50
     },
     CONDENSED_CARBON: {
         name: 'сжатый углерод',
@@ -142,6 +165,7 @@ const ResourcesConstant: ResourcesSchema = {
         craft: {
             CARBON: 50,
         },
+        baseExtraction: 5,
         craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     IRON_DUST: {
@@ -152,62 +176,74 @@ const ResourcesConstant: ResourcesSchema = {
     PHOSPHORUS: {
         name: 'фосфор',
         description: 'фосфор',
-        size: 's'
+        size: 's',
+        baseExtraction: 40
     },
     PLATINUM: {
         name: 'платина',
         description: 'платина',
-        size: "m"
+        size: "m",
+        baseExtraction: 10
     },
     PYRITE: {
         name: 'пирит',
         description: 'пирит',
-        size: "m"
+        size: "m",
+        baseExtraction: 60
     },
     QUARTZ: {
         name: 'кварц',
         description: 'кварц',
-        size: 's'
+        size: 's',
+        baseExtraction: 30
     },
     RADON: {
         name: 'радон',
         description: 'радон',
-        size: 'l'
+        size: 'l',
+        baseExtraction: 90
     },
     SALT: {
         name: 'соль',
         description: 'соединение натрия и хлора',
-        size: 'xl'
+        size: 'm',
+        baseExtraction: 140
     },
     SILICON: {
         name: 'кремний',
         description: 'кремний',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 70
     },
     SILVER: {
         name: 'серебро',
         description: 'серебро',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 15
     },
     TRITIUM: {
         name: 'тритий',
         description: 'тритий',
-        size: 's'
+        size: 's',
+        baseExtraction: 30
     },
     SOIL: {
         name: 'почва',
         description: 'почва',
-        size: 'l'
+        size: 'l',
+        baseExtraction: 120
     },
     ALUMINIUM: {
         name: 'алюминий',
         description: 'алюминий',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 200
     },
     LEAD: {
         name: 'свинец',
         description: 'свинец',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 80
     },
     OIL: {
         name: 'углеводороды',
@@ -217,6 +253,7 @@ const ResourcesConstant: ResourcesSchema = {
             CARBON: 4,
             HYDROGEN: 1
         },
+        baseExtraction: 80,
         craftModuleRequired: [resourceEnum.PORTABLE_REFINER]
     },
     GLASS_WOOL: {
@@ -246,28 +283,8 @@ const ResourcesConstant: ResourcesSchema = {
     TITANIUM: {
         name: 'титан',
         description: 'металл',
-        size: 's'
-    },
-    WORKER: {
-        name: 'рабочий',
-        description: '(служебное) нужен для обслуживания построек в колониях',
-        size: 's'
-    },
-    LIFE: {
-        name: 'LIFE',
-        description: '(служебное) LIFE',
-        size: 's'
-    },
-    INTERSTELLAR_SCANNER: {
-        name: 'межзвездный сканнер',
-        description: 'позволяет осуществлять навигацию между звездными системами',
-        starShipConsumable: true,
-        size: 'xl'
-    },
-    FOOD: {
-        name: 'еда',
-        description: 'необходима для поддержания жизни в колониях',
-        size: 's'
+        size: 's',
+        baseExtraction: 40
     },
     CIRCUIT: {
         name: 'электросхема',
@@ -277,11 +294,6 @@ const ResourcesConstant: ResourcesSchema = {
             COPPER: 5,
             ALUMINIUM: 40
         }
-    },
-    ENERGY: {
-        name: 'энергия',
-        description: '(служебное) нужна для функционирования большинства построек',
-        size: 's'
     },
     RADIO_CONSUMER: {
         name: 'приемник радиоволн',
@@ -302,11 +314,6 @@ const ResourcesConstant: ResourcesSchema = {
             ANTENNA: 1,
             CIRCUIT: 2
         }
-    },
-    MAINTAIN: {
-        name: 'MAINTAIN',
-        description: '(служебное) ремонт колонии',
-        size: 's'
     },
     HYPER_FUEL: {
         name: 'гипертопливо',
@@ -385,7 +392,8 @@ const ResourcesConstant: ResourcesSchema = {
     IRIDIUM: {
         name: 'иридий',
         description: 'металл',
-        size: 's'
+        size: 's',
+        baseExtraction: 5
     },
     INSULATION: {
         name: 'утеплитель',
@@ -398,12 +406,14 @@ const ResourcesConstant: ResourcesSchema = {
     FUNGAL_MOULD: {
         name: 'грибковая плесень',
         description: 'грибковая плесень',
-        size: 's'
+        size: 's',
+        baseExtraction: 40
     },
     SEEDS: {
         name: 'семена',
         description: 'посадить, полить, подождать',
-        size: 'm'
+        size: 'm',
+        baseExtraction: 30
     },
     ANTIMATTER: {
         name: 'антиматерия',
@@ -643,7 +653,8 @@ const ResourcesConstant: ResourcesSchema = {
     STAR_SILK: {
         name: 'звездный шелк',
         size: 's',
-        description: ''
+        description: '',
+        baseExtraction: 70
     },
     SUPERCONDUCTOR: {
         name: 'сверхпроводник',

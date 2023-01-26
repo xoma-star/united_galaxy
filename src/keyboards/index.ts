@@ -19,6 +19,7 @@ import stocksInlineTooltipKeyboard from "./stocksInlineTooltip.keyboard";
 import itemBuyTooltipKeyboard from "./itemBuyTooltip.keyboard";
 import itemSellTooltipKeyboard from "./itemSellTooltip.keyboard";
 import lotManageInlineKeyboard from "./lotManageInline.keyboard";
+import extractResourceTooltipKeyboard from "./extractResourceTooltip.keyboard";
 
 const KEYBOARDS = {
     DEFAULT: DefaultKeyboard,
@@ -40,7 +41,8 @@ const KEYBOARDS = {
     STOCKS_TOOLTIP: stocksInlineTooltipKeyboard,
     BUY_TOOLTIP: (name: ResourceEnum) => itemBuyTooltipKeyboard(name),
     SELL_TOOLTIP: (name: ResourceEnum) => itemSellTooltipKeyboard(name),
-    LOT_MANAGE_KEYBOARD: (id: string) => lotManageInlineKeyboard(id)
+    LOT_MANAGE_KEYBOARD: (id: string) => lotManageInlineKeyboard(id),
+    EXTRACT_RESOURCE_TOOLTIP: (id: string) => extractResourceTooltipKeyboard(id)
 }
 
 export default KEYBOARDS

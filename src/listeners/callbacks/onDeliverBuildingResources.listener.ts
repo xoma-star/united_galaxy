@@ -11,7 +11,7 @@ const onDeliverBuildingResourcesListener = async (bot: TelegramBot, query: Callb
         const colonyData = await getColonyData(colonyId)
         if(typeof colonyData === 'undefined') return await bot
             .sendMessage(query.from.id, MESSAGES.RU.ERROR_UNKNOWN)
-        const userData = colonyData.expand?.owner.find(x => x.tg_id === query.from.id)
+        const userData = colonyData.expand?.owner
         if(typeof userData === 'undefined') return await bot
             .sendMessage(query.from.id, MESSAGES.RU.ERROR_UNKNOWN)
         if(colonyData.coordinates.system !== userData.coordinates) return await bot

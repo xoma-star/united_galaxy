@@ -8,7 +8,7 @@ const onManageBuildingsListener = async (bot: TelegramBot, query: CallbackQuery,
         const colonyData = await getColonyData(id)
         if(!colonyData) return await bot
             .sendMessage(query.from.id, MESSAGES.RU.ERROR_UNKNOWN)
-        if(colonyData.expand?.owner.find(x => x.tg_id === query.from.id)?.coordinates !== colonyData.coordinates.system) return bot
+        if(colonyData.expand?.owner.coordinates !== colonyData.coordinates.system) return bot
             .sendMessage(query.from.id, MESSAGES.RU.NOT_IN_SELECTED_SYSTEM)
         for(const building of colonyData.modules) await bot
             .sendMessage(

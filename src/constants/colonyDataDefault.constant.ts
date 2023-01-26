@@ -26,7 +26,8 @@ const colonyDataDefaultConstant = (system: systemSchema, planet: number, owner: 
             system: system.coordinates,
             planetIndex: planet
         },
-        name: colonyNameGenerator(system.coordinates + planet.toString())
+        name: colonyNameGenerator(system.coordinates + planet.toString()),
+        extractingResource: null
     }
 }
 

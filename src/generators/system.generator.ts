@@ -9,6 +9,7 @@ import planetSchema from "../schemas/planet.schema";
 import planetGenerator from "./planet.generator";
 import {sha512} from "js-sha512";
 import seedrandom from "seedrandom";
+import normalDistribution from "../misc/normalDistribution";
 
 const systemGenerator = (seed: string): SystemSchema => {
     seed = seed.toUpperCase()
@@ -57,7 +58,8 @@ const systemGenerator = (seed: string): SystemSchema => {
         tradingMultiplier: 1,
         discovered: 0,
         discoverer: '',
-        sector: 'W1H1D1'
+        sector: 'W1H1D1',
+        resourcesMultiplier: normalDistribution(seed) + 0.5
     }
 }
 

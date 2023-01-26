@@ -22,6 +22,7 @@ import BuildingsConstant from "../constants/buildings.constant";
 import BuildingSchema from "../schemas/building.schema";
 import marketItemSchema from "../schemas/marketItem.schema";
 import depthOfMarket from "../misc/depthOfMarket";
+import checkColonyReady from "../misc/checkColonyReady";
 
 const MessagesRU = {
     START_MESSAGE: 'Добро пожаловать на просторы Единой Галактики ✨! Где это? Вы когда-нибудь слышали о мультивселенных? ' +
@@ -169,10 +170,15 @@ const MessagesRU = {
     NO_COLONIES_MANAGED: 'У вас нет управляемых колоний.',
     COLONY_INFO_FULL: (colony: ColonySchema) => `Терминал управления колонией ${colony.name}\n` +
         `Модули колонии: ${colony.modules.map(x => BuildingsConstant[x.module_name].name).join(', ')}\n` +
-        `Заполненность склада: ${calculateCargoLoad(colony.storage)}/${globalConstant.baseColonyStorage}`,
+        `Заполненность склада: ${calculateCargoLoad(colony.storage)}/${globalConstant.baseColonyStorage}\n` +
+        `${checkColonyReady(colony) ?
+            `${!colony.extractingResource && `Колония готова добывать ресурсы. ` || 
+            `Сейчас добывается: ${ResourcesConstant[colony.extractingResource as ResourceEnum].name}`}` :
+            'Добыча недоступна: постройте все модули'
+        }`,
     COLONY_BUILDING_INFO: (building: BuildingSchema) => ` ${capitalize(BuildingsConstant[building.module_name].name)}\n` +
         (building.completed ?
-            `` :
+            `Модуль готов к работе.` :
             `Модуль не построен. Необходимые ресурсы: \n` +
             (Object.keys(building.resourcesRequired) as ResourceEnum[])
                 .map(x => `${capitalize(ResourcesConstant[x].name)}: ${building.resourcesRequired[x]}`)
@@ -231,7 +237,33 @@ const MessagesRU = {
    `${count} ${ResourcesConstant[item].name} по цене ${price.toFixed(2)}`,
     NO_ACTIVE_LOTS: 'Нет активных лотов.',
     LOT_REMOVED: 'Лот снят.',
-    COLONY_BUILDING_DONE: 'Все ресурсы доставлены. Модуль готов к эксплуатации.'
+    COLONY_BUILDING_DONE: 'Все ресурсы доставлены. Модуль готов к эксплуатации.',
+    ITEM_INFO: (item: ResourceEnum) => {
+        let message = `${capitalize(ResourcesConstant[item].name)}\n` +
+            `${capitalize(ResourcesConstant[item].description)}\n`
+        if(typeof ResourcesConstant[item].craft !== 'undefined'){
+            const craft = ResourcesConstant[item].craft || {}
+            message += `Может быть создано из: \n`
+            message += (Object.keys(craft) as ResourceEnum[])
+                .map(x => `${capitalize(ResourcesConstant[x].name)} - ${craft[x]}\n`)
+                .join('')
+            const module = ResourcesConstant[item].craftModuleRequired
+            if(module) message += `Для создания нужны модули корабля: ${module.map(x => ResourcesConstant[x].name).join(', ')}`
+        }
+        return message
+    },
+    NOT_CRAFTABLE: `Этот предмет нельзя изготовить`,
+    NO_NEEDED_MODULES: `У вас нет нужных модулей`,
+    CRAFT_SUCCESS: (item: ResourceEnum, count: number) => `Предмет ${ResourcesConstant[item].name} был создан (${count} шт.)`,
+    COLONY_NOT_FOUND: 'Колония не найдена. Используйте кнопки из интерфейса управления колонией.',
+    NO_ACCESS: 'Нет доступа.',
+    EXTRACTING_RESOURCE_CHANGED: (resource: ResourceEnum) => `Добываемый ресурс изменен на ${ResourcesConstant[resource].name}`,
+    RESOURCE_NOT_AVAILABLE_ON_PLANET: 'Этого ресурса нет на планете. Используйте планетарный сканер, чтобы узнать доступные.',
+    STORE_IS_FULL_COLONY: (colonyName: string) => `Хранилище колонии ${colonyName} заполнено. Заберите ресурсы, чтобы возобновить добычу.`,
+    COLONY_RESOURCE_COLLECTED: (resource: ResourceEnum, name: string, count: number) => `Колония ${name} добыла ${count} ${ResourcesConstant[resource].name}`,
+    STORAGE_FULL: 'Нет места в грузовом отсеке.',
+    STORAGE_EMPTY: 'Нет хранимых ресурсов.',
+    RESOURCES_COLLECTED: 'Ресурсы доставлены в грузовой отсек.'
 } as const satisfies MessagesSchema
 
 export default MessagesRU

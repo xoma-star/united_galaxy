@@ -62,6 +62,8 @@ const onBuyListener = async (bot: TelegramBot, msg: Message, regex: RegExpExecAr
                 ))
             case MessagesEnum.PARTIAL_BUY_MARKET: return await bot
                 .sendMessage(msg.from?.id || -1, MESSAGES.RU.PARTIAL_BUY_MARKET(response.count, response.summary, itemName))
+            case MessagesEnum.STORAGE_FULL: return await bot
+                .sendMessage(msg.from?.id || -1, MESSAGES.RU.STORAGE_FULL)
         }
     }
     catch (e) {

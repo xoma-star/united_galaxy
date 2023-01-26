@@ -13,7 +13,8 @@ interface SystemSchema {
     blackHole: boolean,
     discovered: number,
     discoverer: string,
-    sector: string
+    sector: string,
+    resourcesMultiplier: number
 }
 
 export default SystemSchema

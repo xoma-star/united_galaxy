@@ -16,6 +16,7 @@ import onManageBuildingsListener from "./callbacks/onManageBuildings.listener";
 import onDeliverBuildingResourcesListener from "./callbacks/onDeliverBuildingResources.listener";
 import onActiveLotsCallbackListener from "./callbacks/onActiveLotsCallback.listener";
 import onRemoveLotCallbackListener from "./callbacks/onRemoveLotCallback.listener";
+import onColonyCollectListener from "./callbacks/onColonyCollect.listener";
 
 const onCallbackListener = (bot: TelegramBot) => {
     bot.on('callback_query', async (msg: CallbackQuery) => {
@@ -38,6 +39,7 @@ const onCallbackListener = (bot: TelegramBot) => {
             case CallbackQueryCommandsEnum.DELIVER_CONSTRUCTION_RESOURCES: return onDeliverBuildingResourcesListener(bot, msg, query.c, query.m)
             case CallbackQueryCommandsEnum.ACTIVE_LOTS: return onActiveLotsCallbackListener(bot, msg)
             case CallbackQueryCommandsEnum.REMOVE_LOT: return onRemoveLotCallbackListener(bot, msg, query.id)
+            case CallbackQueryCommandsEnum.COLONY_COLLECT_ALL: return onColonyCollectListener(bot, msg, query.id)
         }
     })
 }

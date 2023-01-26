@@ -6,10 +6,10 @@ const BiomeConstant: BiomeSchema = {
         name: 'цветущий',
         difficultyMultiplier: 0.8,
         possibleSurfaces: {
-            LAKY: 1,
-            ISLANDS: 1,
-            CONTINENTAL: 1,
-            PANGEAN: 1
+            LAKY: 0.1,
+            ISLANDS: 0.1,
+            CONTINENTAL: 0.6,
+            PANGEAN: 0.2
         },
         faunaLevel: {
             min: 1,
@@ -35,7 +35,19 @@ const BiomeConstant: BiomeSchema = {
             AMMONIA: 0.7,
             COPPER: 0.4,
             WATER: 0.8,
-            SOIL: 1
+            SOIL: 1,
+            BASALT: 0.3,
+            GOLD: 0.6,
+            CADMIUM: 0.4,
+            SODIUM: 0.7,
+            COBALT: 0.7,
+            DIAMOND: 0.4,
+            LEAD: 0.4,
+            PLATINUM: 0.2,
+            SILVER: 0.3,
+            TITANIUM: 0.6,
+            STAR_SILK: 0.8,
+            SEEDS: 0.9
         }
     },
     BARREN: {
@@ -106,9 +118,9 @@ const BiomeConstant: BiomeSchema = {
         name: 'ледяной',
         difficultyMultiplier: 1.1,
         possibleSurfaces: {
-            CONTINENTAL: 1,
-            PANGEAN: 1,
-            LAKY: 1
+            CONTINENTAL: 0.4,
+            PANGEAN: 0.3,
+            LAKY: 0.3
         },
         faunaLevel: {
             min: 0,
@@ -157,7 +169,17 @@ const BiomeConstant: BiomeSchema = {
         },
         possibleResources: {
             INDIUM: 1,
-            STONE: 1
+            STONE: 1,
+            PLATINUM: 1,
+            TITANIUM: 1,
+            DIAMOND: 1,
+            SILVER: 1,
+            GOLD: 1,
+            CADMIUM: 1,
+            COPPER: 1,
+            IRIDIUM: 1,
+            QUARTZ: 1,
+            GRAVITINO_BALL: 1
         }
     },
     MARSH: {
@@ -165,8 +187,9 @@ const BiomeConstant: BiomeSchema = {
         name: 'болотистый',
         difficultyMultiplier: 1,
         possibleSurfaces: {
-            CONTINENTAL: 1,
-            LAKY: 1
+            CONTINENTAL: 0.5,
+            LAKY: 0.3,
+            PANGEAN: 0.2
         },
         faunaLevel: {
             min: 0,
@@ -190,11 +213,11 @@ const BiomeConstant: BiomeSchema = {
     RADIATED: {
         possibleNames: ['облучённая', 'радиоактивная', 'заражённая', 'ядерная', 'изотопная'],
         name: 'радиоактивный',
-        difficultyMultiplier: 1,
+        difficultyMultiplier: 1.3,
         possibleSurfaces: {
-            LAKY: 1,
-            CONTINENTAL: 1,
-            PANGEAN: 1
+            LAKY: 0.3,
+            CONTINENTAL: 0.4,
+            PANGEAN: 0.3
         },
         faunaLevel: {
             min: 0,
@@ -219,7 +242,7 @@ const BiomeConstant: BiomeSchema = {
     SCORCHED: {
         possibleNames: ['обугленная', 'безводная', 'выжженная', 'горячая', 'огненная', 'кипящая', 'жаркая', 'раскалённая'],
         name: 'выжженный',
-        difficultyMultiplier: 1,
+        difficultyMultiplier: 1.5,
         possibleSurfaces: {
             PANGEAN: 1
         },
@@ -249,11 +272,11 @@ const BiomeConstant: BiomeSchema = {
     TOXIC: {
         possibleNames: ['токсичная', 'ядовитая', 'отравленная', 'кислотная', 'щёлочная', 'едкая', 'гниющая'],
         name: 'отравленный',
-        difficultyMultiplier: 1,
+        difficultyMultiplier: 1.3,
         possibleSurfaces: {
-            LAKY: 1,
-            CONTINENTAL: 1,
-            PANGEAN: 1
+            LAKY: 0.5,
+            CONTINENTAL: 0.2,
+            PANGEAN: 0.3
         },
         faunaLevel: {
             min: 0,
@@ -279,12 +302,12 @@ const BiomeConstant: BiomeSchema = {
     VOLCANIC: {
         possibleNames: ['лавовая', 'магматическая', 'извергающаяся', 'вулканическая', 'пепельная', 'расплавленная', 'полыхающая', 'базальтовая'],
         name: 'вулканический',
-        difficultyMultiplier: 1,
+        difficultyMultiplier: 1.4,
         possibleSurfaces: {
-            ARCHIPELAGO: 1,
-            ISLANDS: 1,
-            PANGEAN: 1,
-            CONTINENTAL: 1
+            ARCHIPELAGO: 0.5,
+            ISLANDS: 0.3,
+            PANGEAN: 0.1,
+            CONTINENTAL: 0.1
         },
         faunaLevel: {
             min: 0,
@@ -341,8 +364,8 @@ const BiomeConstant: BiomeSchema = {
         name: 'водяной',
         difficultyMultiplier: 1,
         possibleSurfaces: {
-            OCEANIC: 1,
-            REEF: 1
+            OCEANIC: 0.5,
+            REEF: 0.5
         },
         faunaLevel: {
             min: 0,

@@ -10,6 +10,8 @@ import {itemStockList} from "../schemas/marketItem.schema";
 import createListing from "../pocketbase/createListing";
 import TelegramBot from "node-telegram-bot-api";
 import MESSAGES from "../messages";
+import calculateCargoLoad from "../misc/calculateCargoLoad";
+import globalConstant from "../constants/global.constant";
 
 const buyItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count: number, price?: number): Promise<ItemBuyOutputSchema> => {
     try {
@@ -17,6 +19,9 @@ const buyItem = async (bot: TelegramBot, id: string, item: ResourceEnum, count: 
         const listing = await getItemListing(item)
         if(!listing) return {message: MessagesEnum.ITEM_BUY_MARKET_PRICE_NO_LOTS}
         const userData = await getUserData(id)
+        if(globalConstant.baseShipCargoLoad - calculateCargoLoad(userData.items) - calculateCargoLoad({[item]: count}) < 0) return {
+            message: MessagesEnum.STORAGE_FULL
+        }
         const sellSorted = listing.sell
             .filter(x => x.seller !== id)
             .filter(x => x.price <= (price || Infinity))

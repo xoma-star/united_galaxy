@@ -13,7 +13,7 @@ interface lotPlaced {
 }
 
 interface noLots {
-    message: MessagesEnum.ITEM_BUY_MARKET_PRICE_NO_LOTS
+    message: MessagesEnum.ITEM_BUY_MARKET_PRICE_NO_LOTS | MessagesEnum.STORAGE_FULL
 }
 
 interface partialBuy {

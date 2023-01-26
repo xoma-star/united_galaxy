@@ -1,6 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import addListeners from "./listeners";
 import startExpress from "./api";
+import addDaemons from "./daemons";
 
 const token = '5828331861:AAHs0VGlM4BJhJbWF9lVQxEeL8j187m_QcQ'
 
@@ -14,10 +15,13 @@ bot.setMyCommands([
     {command: '/change_name', description: 'Переименовать компанию'},
     {command: '/list', description: 'Список лотов'},
     {command: '/sell', description: 'Продать предмет'},
-    {command: '/buy', description: 'Купить предмет'}
+    {command: '/buy', description: 'Купить предмет'},
+    {command: '/craft', description: 'Создать предмет'},
+    {command: '/info', description: 'Информация о предмете'}
 ])
 
 addListeners(bot)
+addDaemons(bot)
 startExpress()
 
 //TODO:

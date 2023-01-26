@@ -9,7 +9,8 @@ type ResourcesSchema = {
         craft?: {
             [K in keyof typeof ResourceEnum]?: number
         },
-        craftModuleRequired?: ResourceEnum[]
+        craftModuleRequired?: ResourceEnum[],
+        baseExtraction?: number
     }
 }
 

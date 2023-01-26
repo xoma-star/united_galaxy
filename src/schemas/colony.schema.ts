@@ -13,9 +13,9 @@ interface ColonySchema {
     },
     modules: BuildingSchema[],
     expand?: {
-        owner: UserDataSchema[]
-    }
-
+        owner: UserDataSchema
+    },
+    extractingResource: ResourceEnum | null
 }
 
 export default ColonySchema
